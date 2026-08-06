@@ -4,31 +4,46 @@ body {
   line-height: 1.6;
 }
 
-/* Logo */
+/* Header */
+
 #logo {
   object-fit: cover;
   display: block;
 }
 
-
-/* Header */
 .header-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: Arial, Helvetica, sans-serif, serif;
-  background: #0100a2;
+  background: #1c3f8f;
   color: #ffffff;
   width: 100%;
-  /* padding: 0 30px; */
+  padding: 15px 30px;
   /* position: relative; */
-  top: 0; 
+  /* top: 0;  */
+    box-sizing: border-box;
+
 }
+
 .header-right {
   display: flex;
   justify-content: space-between;
-
+  text-align: left;
 }
-
+.iso {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+#ecole {
+  font-size: 22px;
+  margin: 0;
+}
+.header-right p {
+  margin: 2px 0;
+  font-size: 13px;
+}
 #page {
   max-width: 800px;
   margin: 10px;
@@ -38,7 +53,6 @@ body {
 #text {
   color: #000000;
   display: block;
-
 }
 
 #presentation {
@@ -85,4 +99,3 @@ footer {
   justify-content: space-around;
   font-size: 10px;
 }
-
