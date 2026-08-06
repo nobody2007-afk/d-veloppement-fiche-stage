@@ -72,7 +72,12 @@ body {
   font-size: 13px;
 }
 
-
+.bande-or {
+  margin-top: 10px;
+  height: 10px;
+  background: #c9a227;
+  max-width: 800px;
+}
 /* Section */
 #page {
   max-width: 900px;
