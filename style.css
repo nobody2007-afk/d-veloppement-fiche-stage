@@ -1,6 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   line-height: 1.6;
 }
 
@@ -9,6 +13,7 @@ body {
 #logo {
   object-fit: cover;
   display: block;
+  border-radius: 6px;
 }
 
 .header-content {
@@ -22,32 +27,71 @@ body {
   padding: 15px 30px;
   /* position: relative; */
   /* top: 0;  */
-    box-sizing: border-box;
-
+  box-sizing: border-box;
 }
 
-.header-right {
+#header-right {
   display: flex;
-  justify-content: space-between;
   text-align: left;
 }
+
 .iso {
   display: flex;
-  gap: 10px;
-  align-items: baseline;
+  /* gap: 10px; */
 }
+
+.iso h1 {
+  display: block;
+  margin-left: 0;
+
+}
+
+#iso {
+  text-align: justify;
+  font-weight: bold;
+  margin: 0;
+  margin-right: 5px;
+}
+
 #ecole {
   font-size: 22px;
-  margin: 0;
+  margin-right: 10px;
+  margin-top: 7px;
 }
-.header-right p {
+
+#formation {
+  margin-left: 20px;
   margin: 2px 0;
   font-size: 13px;
 }
+
+#certification {
+  margin-right: 20px;
+  color: #c9a227;
+  margin: 2px 0;
+  font-size: 13px;
+}
+
+
+/* Section */
 #page {
-  max-width: 800px;
-  margin: 10px;
-  /* padding: 10% 8%; */
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+#entreprise {
+  margin-left: 570px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 250px;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #000000;
 }
 
 #text {
@@ -58,12 +102,21 @@ body {
 #presentation {
   margin-top: 20px;
   background: gray;
-  width: 1000px;
   text-align: center;
-  height: 35px;
+  width: 100%;
+  box-sizing: border-box;
   border: 1.5px solid #000000;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
+  padding: 8px 0;
+
 }
+
+#paragraph {
+  font-weight: bold;
+  margin: 0;
+  font-size: 15px;
+}
+
 
 .information {
   display: block;
@@ -71,6 +124,9 @@ body {
   margin-bottom: 5px;
 }
 
+
+
+/* Footer */
 footer {
   background: #1e2942;
   padding: 2rem;

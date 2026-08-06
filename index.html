@@ -14,57 +14,56 @@
             <div class="logo">
                 <img src="pigier-benin.png" width="150" height="50" alt="Logo pigier" id="logopigier">
             </div>
-
-            <div class="header-right">
-                <div class="iso">
-                    <h1 id="ecole">Ecole Certifiée ISO</h1>
-                    <p>9001/2015 <br>21001/2018</p>
+            <div id="header-right">
+                <div class="header-right">
+                    <div class="iso">
+                        <h1 id="ecole">Ecole Certifiée ISO</h1>
+                        <p id="iso">9001/2015 <br>21001/2018</p>
+                    </div>
+                    <div class="iso1">
+                        <p id="formation">Formation & Placement des Apprenants</p>
+                        <p id="certification">APAVE Certification - Certificat N°312032/r1</p>
+                    </div>
                 </div>
-                <p id="formation">Formation & Placement des Apprenants</p>
-                <p id="certification">APAVE Certification - Certificat N°312032/r1</p>
-            </div>
 
-            <div class="logo">
-                <img src="logo1.jpeg" width="50" height="50" alt="Logo ISO" id="logo">
+                <div class="logo1">
+                    <img src="logo1.jpeg" width="100" height="100" alt="Logo ISO" id="logo">
+                </div>
             </div>
-        </div>
         </div>
         <div class="bande-or"></div>
     </header>
 
 
     <section id="page">
+
         <p>Cotonou, le 24 juillet 2026</p>
+
         <div id="entreprise">
             <label id="text">Entreprise</label>
-            <input class="form-control" type="text" name="Nom" required>
-
+            <input class="form-control" type="text" name="Nom" value="DGTCP">
         </div>
         <div id="presentation">
-            <p>PRESENTATION DU STAGIAIRE</p>
+            <p id="paragraph">PRESENTATION DU STAGIAIRE</p>
         </div>
-        <p><strong>Monsieur,</strong></p>
+        <p><strong>Monsieur/Madame,</strong></p>
         <p>Vous avez bien voulu accepter de prendre en stage un (e) de nos apprenant(e)s et nous vous remercions.
         </p>
-        <form id="form1" action="" class="form">
+           <form id="form1" action="" class="form">
 
-            <div class="form-group">
+            <div class="form-group2">
+                <input class="form-control" type="text" name="Nom">
+            </div>
 
-                <div class="form-group2">
-                    <label class="information">Nous avons le plaisir de vous présenter :</label>
-                    <input class="form-control" type="search" name="Nom" required placeholder="Saisir le nom...">
-                </div>
-
-                <div class="form-group2">
-                    <label class="information">De la filière</label>
-                    <select name="sexe" id="sexe">
-                        <option value="Dev">Développement Web</option>
-                        <option value="Com">Communication Digitale</option>
-                        <option value="Cre">Création Digitale</option>
-                        <option value="Gen">Génie Civil</option>
-                        <option value="Cyb">Cybersécurité</option>
-                    </select>
-                </div>
+            <div class="form-group2">
+                <label class="information">De la filière</label>
+                <select name="filiere" id="filiere">
+                    <option value="Dev" selected>Développement Web</option>
+                    <option value="Com">Communication Digitale</option>
+                    <option value="Cre">Création Digitale</option>
+                    <option value="Gen">Génie Civil</option>
+                    <option value="Cyb">Cybersécurité</option>
+                </select>
             </div>
 
         </form>
