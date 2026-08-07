@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <fieldset id="a">
+        <legend>Connexion</legend>
+
+        <form id="form1" action="index.html" class="form">
+            <img width="100px" src="pigier-benin.png">
+
+            <fieldset class="a">
+                <legend>Informations de l'éditeur</legend>
+
+                <div class="b">
+
+                    <div>
+                        <label class="c">Nom</label>
+                        <input class="d" type="name" name="Nom" required placeholder="Saisir le nom de l'étudiant...">
+                    </div>
+
+                    <div>
+                        <label class="c">Date d'édition</label>
+                        <input class="d" type="date" name="DateDeNaissance" required>
+                    </div>
+                </div>
+
+                <div class="b">
+
+                    <div>
+                        <label class="c">Prénom</label>
+                        <input class="d" type="name" name="Prenom" required placeholder="Saisir le prénom...">
+                    </div>
+
+                    <div>
+                        <label class="c">Sexe</label>
+                        <input class="d" type="text" name="sexe" required placeholder="Saisir le sexe...">
+                    </div>
+                </div>
+
+                <div class="b">
+
+                    <div>
+                        <label class="c">Lieu d'édition</label>
+                        <input class="d" type="address" name="LieuDeNaissance" required
+                            placeholder="Saisir le lieu d'édition...">
+                    </div>
+
+                    <div>
+                        <label class="c">Telephone</label>
+                        <input class="d" type="tel" name="Nom" required placeholder="Saisir le tel...">
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <fieldset class="e">
+                <legend>Informations academiques</legend>
+                <div class="b">
+
+                    <div>
+                        <label class="c">Nom</label>
+                        <input class="d" type="name" name="Nom" required placeholder="Saisir le nom de l'étudiant...">
+                    </div>
+
+                    <div>
+                        <label class="c">Date d'édition</label>
+                        <input class="d" type="date" name="DateDeNaissance" required>
+                    </div>
+                </div>
+
+                <div class="b">
+
+                    <div>
+                        <label class="c">Prénom</label>
+                        <input class="d" type="name" name="Prenom" required placeholder="Saisir le prénom...">
+                    </div>
+
+                    <div>
+                        <label class="c">Sexe</label>
+                        <input class="d" type="text" name="sexe" required placeholder="Saisir le sexe...">
+                    </div>
+                </div>
+                <div class="f">
+
+                    <div>
+                        <label class="g">Filiere</label>
+                        <select name="filiere" required>
+                            <option selected="selected">Developpement web</option>
+                            <option selected="selected">Creation digitale</option>
+                            <option selected="selected">Communication digitale</option>
+                            <option value="Gen">Génie Civil</option>
+                            <option value="Cyb">Cybersécurité</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="g">Niveaux</label>
+                        <input type="radio" name="choix" required><label>L1</label>
+                        <input type="radio" name="choix" required><label>L2</label>
+                        <input type="radio" name="choix" required><label>L3</label>
+                    </div>
+
+                </div>
+
+                <br>
+                <div>
+                    <label class="c">Entreprise</label>
+                    <input type="text" name="Entreprise" required placeholder="Saisir le nom de l'entreprise...">
+                </div>
+            </fieldset>
+
+        </form>
+
+        <form id="form2" class="form">
+
+            <fieldset class="h">
+                <legend>Autres</legend>
+                <div class="b">
+
+                    <div>
+                        <label class="c">Photo</label>
+                        <textarea rows="5" cols="30" name="description"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="c">Commentaires</label>
+                        <textarea rows="5" cols="30" name="description"></textarea>
+                    </div>
+
+                </div>
+            </fieldset>
+
+        </form>
+
+        <div class="m">
+            <button type="submit" form="form1">Enregistrer</button>
+            <button type="submit" form="form2">Reinitialiser</button>
+        </div>
+
+    </fieldset>
+    <table>
+        <tr>
+            <td rowspan="2">N°</td>
+            <td colspan="2">Sexe</td>
+            <td rowspan="2">Data</td>
+        </tr>
+        <tr>
+            <td>M</td>
+            <td>F</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>40</td>
+            <td>50</td>
+            <td>Emploi</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>20</td>
+            <td>10</td>
+            <td>Sites</td>
+        </tr>
+    </table>
+</body>
+
+</html>
