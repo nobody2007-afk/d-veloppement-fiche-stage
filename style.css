@@ -132,13 +132,16 @@ body {
   font-size: 18px;
   margin-bottom: 5px;
 }
+
 #filiere-label {
-margin-top: 10px;
+  margin-top: 10px;
 }
+
 #confirmation {
   margin-bottom: 0px;
   font-size: 20px;
 }
+
 li {
   margin-top: 0;
 }
@@ -146,35 +149,65 @@ li {
 #signature-nom {
   margin-top: 40px;
 }
+
 #attache {
   margin-top: 20px;
 }
+
 /* Footer */
-footer {
+.bande {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+#bande-or-footer1 {
+  flex: 1;
+  height: 25px;
   background: #1e2942;
-  padding: 2rem;
-  height: 100px;
-  position: relative;
-  bottom: 0;
+  margin-left: 0;
+  margin: 0 5px;
+}
+
+#bande-or-footer2 {
+  flex: 1;
+  height: 10px;
+  background: #c9a227;
+  /* margin: 0 5px; */
+}
+
+footer> :not(.bande) {
+  background: #f1f3f9;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Arial, Helvetica, sans-serif, serif;
+  /* margin-top: 40px; */
   /* position: fixed; */
   /* bottom: 0; */
-  width: 100%;
+}
+
+#ecole-footer {
+  color: #1e2942;
+  text-align: right;
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif, serif;
+  font-weight: bold;
+  margin: 0 0 15px 0;
 }
 
 .footer-content {
-  color: #d1d2dc;
+  color: #1e2942;
   display: flex;
-  justify-content: space-around;
-  font-size: 10px;
-}
-
-.footer-section {
-  width: 100%;
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 11px;
+  margin: 0%;
 }
 
 .footer-content2 {
-  color: #d1d2dc;
+  color: #1e2942;
   display: flex;
   justify-content: space-around;
   font-size: 10px;
+  margin-top: 0;
 }
