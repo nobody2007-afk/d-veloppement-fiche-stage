@@ -240,3 +240,7 @@ footer> :not(.bande) {
 #internet {
   margin: 0 5px 0 0;
 }
+#text{
+  margin-left: 200px;
+  font-size: 18px;
+}
