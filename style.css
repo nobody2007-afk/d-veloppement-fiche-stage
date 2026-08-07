@@ -21,7 +21,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif, serif;
-  background: #1c3f8f;
+  background: #1e2942;
   color: #ffffff;
   width: 100%;
   padding: 15px 30px;
@@ -78,6 +78,12 @@ body {
   background: #c9a227;
   max-width: 800px;
 }
+.bande-bleu {
+  margin-top: 10px;
+  height: 10px;
+  background: #1e2942;
+  max-width: 800px;
+}
 
 
 /* Section */
@@ -101,9 +107,9 @@ body {
   border: 1px solid #000000;
   box-sizing: border-box;
   font-family: 'Georgia', serif;
-text-align: center;
+  text-align: center;
 }
-
+.form-control 
 #text {
   color: #000000;
   display: block;
@@ -164,7 +170,8 @@ li {
   flex: 1;
   height: 25px;
   background: #1e2942;
-  margin: 0 10px 0 0;/* margin-top;margin-left;margin-bottom;margin-right */
+  margin: 0 10px 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-or-footer2 {
@@ -209,6 +216,7 @@ footer> :not(.bande) {
   font-size: 11px;
   margin: 0 0 0 0;
 }
+
 #internet {
-margin: 0 5px 0 0;
+  margin: 0 5px 0 0;
 }
