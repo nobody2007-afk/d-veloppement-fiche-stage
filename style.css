@@ -95,7 +95,6 @@ body {
 }
 
 
-
 /* Section */
 #page {
   max-width: 900px;
@@ -109,16 +108,15 @@ body {
   margin-bottom: 20px;
 }
 
-#text{
+#text {
   margin-left: 200px;
   font-size: 18px;
 }
 
-
 .form-control {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -136,10 +134,6 @@ body {
   font-family: 'Georgia', serif;
 }
 
-.form-control #text {
-  color: #000000;
-  display: block;
-}
 
 #presentation {
   margin-top: 20px;
