@@ -78,6 +78,8 @@ body {
   background: #c9a227;
   max-width: 800px;
 }
+
+
 /* Section */
 #page {
   max-width: 900px;
@@ -92,11 +94,14 @@ body {
 }
 
 .form-control {
-  width: 250px;
-  padding: 8px;
-  text-align: center;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
   font-weight: bold;
   border: 1px solid #000000;
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+
 }
 
 #text {
@@ -122,15 +127,28 @@ body {
   font-size: 15px;
 }
 
-
 .information {
   display: block;
-  font-size: 13px;
+  font-size: 18px;
   margin-bottom: 5px;
 }
+#filiere-label {
+margin-top: 10px;
+}
+#confirmation {
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+li {
+  margin-top: 0;
+}
 
-
-
+#signature-nom {
+  margin-top: 40px;
+}
+#attache {
+  margin-top: 20px;
+}
 /* Footer */
 footer {
   background: #1e2942;

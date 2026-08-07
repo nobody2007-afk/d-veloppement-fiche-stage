@@ -49,15 +49,16 @@
         <p><strong>Monsieur/Madame,</strong></p>
         <p>Vous avez bien voulu accepter de prendre en stage un (e) de nos apprenant(e)s et nous vous remercions.
         </p>
-           <form id="form1" action="" class="form">
+        <form id="form1" action="" class="form">
 
             <div class="form-group2">
+                <label class="information">Nous avons le plaisir de vous présenter :</label>
                 <input class="form-control" type="text" name="Nom">
             </div>
 
             <div class="form-group2">
-                <label class="information">De la filière</label>
-                <select name="filiere" id="filiere">
+                <label class="information" id="filiere-label">De la filière</label>
+                <select name="filiere" class="form-control" id="filiere">
                     <option value="Dev" selected>Développement Web</option>
                     <option value="Com">Communication Digitale</option>
                     <option value="Cre">Création Digitale</option>
@@ -67,11 +68,10 @@
             </div>
 
         </form>
-        <p>
-        <ul>Nous vous confirmons :
+        <p id="confirmation">Nous vous confirmons :
+        <ul>
             <li>qu'aucune rémuération du stagiaire n'est exigée</li>
-            <li>que ce stage fait partie de sa formation et que l'apprenant(e) est couvert(e) par sa police
-                d'assurance.
+            <li>que ce stage fait partie de sa formation et que l'apprenant(e) est couvert(e) par sa police d'assurance.
             </li>
         </ul>
         </p>
@@ -79,10 +79,13 @@
         <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions
             d'agréer,<strong>Monsieur le Directeur Général</strong>,l'expression de notre parfaite considération.
         </p>
-        <p><strong>L'Attachée Commerciale Division Communication Marketing Placement et Relations
+        <p id="attache"><strong>L'Attachée Commerciale Division Communication <br> Marketing Placement et Relations
                 Extérieures</strong>
         </p>
+        <p id="signature-nom"><strong><u>K. S Rébecca EKPO</u></strong></p>
     </section>
+
+    
     <footer>
         <div id="div1">
             <p>Une Ecole du Groupe Eduservices (France)</p>
