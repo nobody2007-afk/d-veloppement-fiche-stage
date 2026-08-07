@@ -101,7 +101,7 @@ body {
   border: 1px solid #000000;
   box-sizing: border-box;
   font-family: 'Georgia', serif;
-
+text-align: center;
 }
 
 #text {
@@ -157,23 +157,20 @@ li {
 /* Footer */
 .bande {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 #bande-or-footer1 {
   flex: 1;
   height: 25px;
   background: #1e2942;
-  margin-left: 0;
-  margin: 0 5px;
+  margin: 0 10px 0 0;/* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-or-footer2 {
   flex: 1;
   height: 10px;
   background: #c9a227;
-  /* margin: 0 5px; */
 }
 
 footer> :not(.bande) {
@@ -192,7 +189,7 @@ footer> :not(.bande) {
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif, serif;
   font-weight: bold;
-  margin: 0 0 15px 0;
+  margin: 0 0 0 0;
 }
 
 .footer-content {
@@ -201,13 +198,17 @@ footer> :not(.bande) {
   justify-content: space-between;
   align-items: stretch;
   font-size: 11px;
-  margin: 0%;
+  margin: 0 0 0 0;
 }
 
 .footer-content2 {
   color: #1e2942;
   display: flex;
-  justify-content: space-around;
-  font-size: 10px;
-  margin-top: 0;
+  justify-content: space-between;
+  align-items: stretch;
+  font-size: 11px;
+  margin: 0 0 0 0;
+}
+#internet {
+margin: 0 5px 0 0;
 }
