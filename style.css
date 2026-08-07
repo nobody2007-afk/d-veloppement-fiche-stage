@@ -72,18 +72,28 @@ body {
   font-size: 13px;
 }
 
-.bande-or {
+.bande-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#bande-or-header {
   margin-top: 10px;
+  height: 10px;
+  flex: 1;
   height: 10px;
   background: #c9a227;
-  max-width: 800px;
 }
-.bande-bleu {
+
+#bande-bleu-header {
   margin-top: 10px;
-  height: 10px;
+  flex: 1;
+  height: 25px;
   background: #1e2942;
-  max-width: 800px;
+  margin: 10px 10px 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
 }
+
 
 
 /* Section */
@@ -109,8 +119,18 @@ body {
   font-family: 'Georgia', serif;
   text-align: center;
 }
-.form-control 
-#text {
+
+.form-control2 {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  font-family: 'Georgia', serif;
+}
+
+.form-control #text {
   color: #000000;
   display: block;
 }
@@ -161,12 +181,12 @@ li {
 }
 
 /* Footer */
-.bande {
+.bande-footer {
   display: flex;
   justify-content: space-between;
 }
 
-#bande-or-footer1 {
+#bande-bleu-footer {
   flex: 1;
   height: 25px;
   background: #1e2942;
@@ -174,7 +194,7 @@ li {
   /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
-#bande-or-footer2 {
+#bande-or-footer {
   flex: 1;
   height: 10px;
   background: #c9a227;
