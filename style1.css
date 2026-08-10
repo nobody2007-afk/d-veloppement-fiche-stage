@@ -4,24 +4,17 @@ body {
 	justify-content: center;
 	align-items: center;
 	margin: 0;
+	background: #f2f2f2;
 }
 
-table {
-	border-collapse: collapse;
-	text-align: center;
-}
-
-td {
-	border: 1px black solid;
-	width: 50px;
-	padding: 10px;
-}
-
-#fieldset-general {
+#form-general {
+	margin: 20px;
 	color: whitesmoke;
-	width: 520px;
-	border: 1px black solid;
-	background: #1e2942;
+	width: auto;
+	height: auto;
+	background: #2c3e50;
+	border-radius: 5px;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 legend {
@@ -39,47 +32,61 @@ img {
 
 }
 
-.a {
+#fieldset-1 {
 	height: 150px;
 	padding: 20px;
 	width: 500px;
 	margin: 20px;
 }
 
-.b {
+.div-fieldset-1 {
 	display: flex;
 	gap: 20px;
 }
 
-.c {
-	display: block;
+#fieldset-2 {
+	width: 500px;
+	padding: 20px;
+	margin: 20px;
 }
 
-.d {
+.div-fieldset-2 {
+	display: flex;
+	gap: 20px;
+}
+
+.label-champ {
+	font-weight: 600;
+	display: block;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: #555;
+}
+
+.input-champ {
 	width: 250px;
 }
-
-.e {
-	width: 376px;
-	padding: 12px;
-	margin: 20px;
+.champ input:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: #2962aa;
+  box-shadow: 0 0 0 3px rgba(41, 98, 170, 0.1);
 }
 
-.f {
+.div-select {
 	display: flex;
-	gap: 50px;
+	gap: 120px;
 }
 
-.g {
+.label-select {
 	display: block;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: #555;
+	font-weight: 600;
 }
 
-.h {
-	width: 500px;
-	margin: 20px;
-}
-
-.m {
+.div-button {
 	display: flex;
 	margin: 40px;
 	gap: 20px;
@@ -88,8 +95,8 @@ img {
 
 button {
 	border: 3px;
-	border-radius: 10px;
-	background-color: green;
+	border-radius: 5px;
+	background-color: #2962aa;
 	color: white;
 	height: 30px;
 	text-align: center;
@@ -98,8 +105,20 @@ button {
 }
 
 button:hover {
-	background-color: rgb(3, 80, 3);
+	background-color: #1c3e68;
 	transform: translateY(-2px);
 	text-decoration: none;
 	color: white;
+}
+
+table {
+	margin: 20px;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+td {
+	border: 1px black solid;
+	width: 50px;
+	padding: 10px;
 }
