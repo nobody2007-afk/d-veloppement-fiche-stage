@@ -4,28 +4,26 @@ body {
 	justify-content: center;
 	align-items: center;
 	margin: 0;
-	background: #f2f2f2;
+	background: #f4f6f9;
 }
 
-#form-general {
+#form1 {
 	margin: 20px;
-	color: whitesmoke;
+	color: #0100a2;
 	width: auto;
 	height: auto;
-	background: #2c3e50;
+	background: #ffffff;
 	border-radius: 5px;
-	box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 legend {
 	text-align: center;
-}
-
-form {
-	margin: 20px;
+	color: #0100a2;
 }
 
 img {
+	padding-top: 10px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -33,7 +31,7 @@ img {
 }
 
 #fieldset-1 {
-	height: 150px;
+	height: auto;
 	padding: 20px;
 	width: 500px;
 	margin: 20px;
@@ -45,9 +43,13 @@ img {
 }
 
 #fieldset-2 {
+	height: auto;
 	width: 500px;
 	padding: 20px;
-	margin: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 0;
+
 }
 
 .div-fieldset-2 {
@@ -60,29 +62,43 @@ img {
 	display: block;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	color: #555;
+	color: #0100a2;
 }
 
 .input-champ {
 	width: 250px;
+	padding: 12px 15px;
+	border: 1.5px solid #ddd;
+	border-radius: 6px;
+	font-size: 1rem;
+	font-family: inherit;
 }
-.champ input:focus,
-.champ textarea:focus {
-  outline: none;
-  border-color: #2962aa;
-  box-shadow: 0 0 0 3px rgba(41, 98, 170, 0.1);
+
+.input-select {
+	width: auto;
+	padding: 10px;
+	font-size: 16px;
+	border: 1.5px solid #ddd;
+	border-radius: 6px;
+	font-size: 1rem;
+	font-family: inherit;
 }
 
 .div-select {
 	display: flex;
-	gap: 120px;
+	gap: 130px;
+}
+
+.sexe {
+	width: 100px;
+	padding: 5px;
 }
 
 .label-select {
 	display: block;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	color: #555;
+	color: #0100a2;
 	font-weight: 600;
 }
 
@@ -96,16 +112,18 @@ img {
 button {
 	border: 3px;
 	border-radius: 5px;
-	background-color: #2962aa;
+	background-color: #0100a2;
 	color: white;
 	height: 30px;
 	text-align: center;
 	transition: background-color 0.3s, transform 0.2s;
 	cursor: pointer;
+	margin-top: 0;
+	margin-bottom: 20px;
 }
 
 button:hover {
-	background-color: #1c3e68;
+	background-color: rgb(24, 77, 142);
 	transform: translateY(-2px);
 	text-decoration: none;
 	color: white;

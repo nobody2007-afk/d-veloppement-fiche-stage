@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <form id="form-general">
-
+    <div id="a">
         <form id="form1" action="index.html" class="form">
             <img width="100px" src="pigier-benin.png">
 
@@ -40,7 +39,7 @@
 
                     <div>
                         <label class="label-champ">Sexe</label>
-                        <select name="sexe" required>
+                        <select class="sexe" name="sexe" required>
                             <option selected="selected">Masculin</option>
                             <option selected="selected">Feminin</option>
                             <option selected="selected">Autre</option>
@@ -86,7 +85,7 @@
 
                     <div>
                         <label class="label-champ">Sexe</label>
-                        <select name="sexe" required>
+                        <select class="sexe" name="sexe" required>
                             <option selected="selected">Masculin</option>
                             <option selected="selected">Feminin</option>
                             <option selected="selected">Autre</option>
@@ -94,10 +93,9 @@
                     </div>
                 </div>
                 <div class="div-select">
-
                     <div>
                         <label class="label-select">Filiere</label>
-                        <select name="filiere" required>
+                        <select class="input-select" name="filiere" required>
                             <option selected="selected">Developpement web</option>
                             <option selected="selected">Creation digitale</option>
                             <option selected="selected">Communication digitale</option>
@@ -118,12 +116,11 @@
             </fieldset>
 
             <div class="div-button">
-                <button type="submit" form="form1">Enregistrer</button>
-                <button type="submit" form="form2">Réinitialiser</button>
+                <button type="submit">Enregistrer</button>
+                <button type="reset">Réinitialiser</button>
             </div>
         </form>
-
-    </form>
+    </div>
     <table>
         <tr>
             <td colspan="6">Liste des étudiants</td>
@@ -136,39 +133,10 @@
             <td>Entreprise</td>
             <td>Action</td>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
     </table>
+
+    <script src="script.js"></script>
 </body>
+
 
 </html>
