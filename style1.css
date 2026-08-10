@@ -6,7 +6,9 @@ body {
 	margin: 0;
 	background: #f4f6f9;
 }
-
+#a{
+width: auto;
+}
 #form1 {
 	margin: 20px;
 	color: #0100a2;
