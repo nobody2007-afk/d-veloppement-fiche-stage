@@ -2,161 +2,160 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
-    <title>Formulaire</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style1.css">
+  <title>Formulaire</title>
 </head>
 
 <body>
-    <div id="a">
-        <form id="form1" action="index.html" class="form" method="POST">
-            <img width="100px" src="pigier-benin.png">
+  <div id="a">
+    <form id="form1" action="traitement.php" method="POST" class="form">
+      <img width="100px" src="pigier-benin.png" alt="logo">
 
-            <fieldset id="fieldset-1">
-                <legend>Informations de l'éditeur</legend>
+      <fieldset id="fieldset-1">
+        <legend>Informations de l'éditeur</legend>
 
-                <div class="div-fieldset-1">
+        <div class="div-fieldset-1">
+          <div>
+            <label class="label-champ">Nom</label>
+            <input class="input-champ" type="text" name="nom_editeur" required
+              placeholder="Saisir le nom du signataire...">
+          </div>
 
-                    <div>
-                        <label class="label-champ">Nom</label>
-                        <input class="input-champ" type="name" name="Nom" required
-                            placeholder="Saisir le nom du signataire...">
-                    </div>
-                    <div>
-                        <label class="label-champ">Poste</label>
-                        <input class="input-champ" type="text" name="Poste" required placeholder="Saisir le poste...">
-                    </div>
-                </div>
+          <div>
+            <label class="label-champ">Poste</label>
+            <input class="input-champ" type="text" name="poste" required placeholder="Saisir le poste...">
+          </div>
+        </div>
 
-                <div class="div-fieldset-1">
+        <div class="div-fieldset-1">
+          <div>
+            <label class="label-champ">Prénom</label>
+            <input class="input-champ" type="text" name="prenom_editeur" required placeholder="Saisir le prénom...">
+          </div>
 
-                    <div>
-                        <label class="label-champ">Prénom</label>
-                        <input class="input-champ" type="name" name="Prenom" required placeholder="Saisir le prénom...">
-                    </div>
+          <div>
+            <label class="label-champ">Entreprise</label>
+            <input class="input-champ" type="text" name="entreprise" required
+              placeholder="Saisir le nom de l'entreprise...">
+          </div>
+        </div>
 
-                    <div>
-                        <label class="label-champ">Entreprise</label>
-                        <input class="input-champ" type="text" name="Entreprise" required
-                            placeholder="Saisir le nom de l'entreprise...">
-                    </div>
-                </div>
+        <div class="div-fieldset-1">
+          <div>
+            <label class="label-champ">Lieu d'édition</label>
+            <input class="input-champ" type="text" name="lieu_edition" required
+              placeholder="Saisir le lieu d'édition...">
+          </div>
 
-                <div class="div-fieldset-1">
+          <div>
+            <label class="label-champ">Date d'édition</label>
+            <input class="input-champ" type="date" name="date_edition" required>
+          </div>
+        </div>
+      </fieldset>
 
-                    <div>
-                        <label class="label-champ">Lieu d'édition</label>
-                        <input class="input-champ" type="address" name="LieuDeNaissance" required
-                            placeholder="Saisir le lieu d'édition...">
-                    </div>
+      <fieldset id="fieldset-2">
+        <legend>Informations académiques</legend>
 
-                    <div>
-                        <label class="label-champ">Date d'édition</label>
-                        <input class="input-champ" type="date" name="LieuDeNaissance" required
-                            placeholder="Saisir le lieu d'édition...">
-                    </div>
-                </div>
-            </fieldset>
+        <div class="div-fieldset-2">
+          <div>
+            <label class="label-champ">Nom</label>
+            <input class="input-champ" type="text" name="nom_etudiant" required
+              placeholder="Saisir le nom de l'étudiant...">
+          </div>
 
-            <fieldset id="fieldset-2">
-                <legend>Informations académiques</legend>
-                <div class="div-fieldset-2">
+          <div>
+            <label class="label-champ">Prénoms</label>
+            <input class="input-champ" type="text" name="prenom_etudiant" required placeholder="Saisir le prénom...">
+          </div>
+        </div>
 
-                    <div>
-                        <label class="label-champ">Nom</label>
-                        <input class="input-champ" type="name" name="Nom" required
-                            placeholder="Saisir le nom de l'étudiant...">
-                    </div>
+        <div class="div-fieldset-2" id="div-filiere">
+          <div>
+            <label class="label-select">Filière</label>
+            <select class="input-select" name="filiere" required>
+              <option value="Développement Web">Développement web</option>
+              <option value="Création Digitale">Création digitale</option>
+              <option value="Communication Digitale">Communication digitale</option>
+              <option value="Génie Civil">Génie Civil</option>
+              <option value="Cybersécurité">Cybersécurité</option>
+            </select>
+          </div>
 
-                    <div>
-                        <label class="label-champ">Prénoms</label>
-                        <input class="input-champ" type="name" name="Prenom" required placeholder="Saisir le prénom...">
-                    </div>
-                </div>
+          <div>
+            <label class="label-select">Niveau</label>
+            <label><input type="radio" name="niveau" value="1ère année" required> 1ère année</label>
+            <label><input type="radio" name="niveau" value="2ème année"> 2ème année</label>
+            <label><input type="radio" name="niveau" value="3ème année"> 3ème année</label>
+          </div>
+        </div>
 
-                <div class="div-fieldset-2" id="div-filiere">
+        <div class="div-select">
+          <div>
+            <label class="label-champ">Sexe</label>
+            <select class="sexe" name="sexe" required>
+              <option value="Masculin">Masculin</option>
+              <option value="Féminin">Féminin</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
 
-                    <div>
-                        <label class="label-select">Filière</label>
-                        <select class="input-select" name="filiere" required>
-                            <option selected="selected">Developpement web</option>
-                            <option selected="selected">Creation digitale</option>
-                            <option selected="selected">Communication digitale</option>
-                            <option value="Gen">Génie Civil</option>
-                            <option value="Cyb">Cybersécurité</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="label-select">Niveaux</label>
-                        <input type="radio" name="choix" required><label>L1</label>
-                        <input type="radio" name="choix" required><label>L2</label>
-                        <input type="radio" name="choix" required><label>L3</label>
-                    </div>
-                </div>
-                <div class="div-select">
-                    <div>
-                        <label class="label-champ">Sexe</label>
-                        <select class="sexe" name="sexe" required>
-                            <option selected="selected">Masculin</option>
-                            <option selected="selected">Feminin</option>
-                            <option selected="selected">Autre</option>
-                        </select>
-                    </div>
+          <div>
+            <label class="label-champ">Civilité</label>
+            <select class="civilite" name="civilite" required>
+              <option value="M.">M.</option>
+              <option value="Mme.">Mme.</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
 
-                    <div>
-                        <label class="label-champ">Civilité</label>
-                        <select class="civilité" name="civilité" required>
-                            <option selected="selected">M.</option>
-                            <option selected="selected">Mme.</option>
-                        </select>
-                    </div>
-
-                </div>
-
-            </fieldset>
-
-            <div class="div-button">
-                <button type="submit">Enregistrer</button>
-                <button type="reset">Réinitialiser</button>
-                <!-- <button id="btnImprimer">Imprimer</button> -->
-                <!-- <button id="btnVoir">Aperçu</button> -->
-
-            </div>
-        </form>
-    </div>
-    <table>
-        <tr>
-            <td colspan="7">Liste des éditeurs</td>
-        </tr>
-        <tr>
-            <td>#</td>
-            <td>Nom</td>
-            <td>Prénom</td>
-            <td>Poste</td>
-            <td>Entreprise</td>
-            <td>Lieu d'édition</td>
-            <td>Date d'édition</td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td colspan="8">Liste des étudiants</td>
-        </tr>
-        <tr>
-            <td>#</td>
-            <td>Nom</td>
-            <td>Prénoms</td>
-            <td>Filière</td>
-            <td>Niveau</td>
-            <td>Sexe</td>
-            <td>Civilité</td>
-            <td>Action</td>
-        </tr>
-    </table>
+      <div class="div-button">
+        <button type="submit">Enregistrer</button>
+        <button type="reset">Réinitialiser</button>
+      </div>
+    </form>
+  </div>
 
 
-    <script src="script.js"></script>
+
+
+
+
+  <table>
+    <tr>
+      <td colspan="7">Liste des éditeurs</td>
+    </tr>
+    <tr>
+      <td>#</td>
+      <td>Nom</td>
+      <td>Prénom</td>
+      <td>Poste</td>
+      <td>Entreprise</td>
+      <td>Lieu d'édition</td>
+      <td>Date d'édition</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td colspan="8">Liste des étudiants</td>
+    </tr>
+    <tr>
+      <td>#</td>
+      <td>Nom</td>
+      <td>Prénoms</td>
+      <td>Filière</td>
+      <td>Niveau</td>
+      <td>Sexe</td>
+      <td>Civilité</td>
+      <td>Action</td>
+    </tr>
+  </table>
+
+
+  <script src="script.js"></script>
 </body>
 
 
