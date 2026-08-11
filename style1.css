@@ -6,9 +6,11 @@ body {
 	margin: 0;
 	background: #f4f6f9;
 }
-#a{
-width: auto;
+
+#a {
+	width: auto;
 }
+
 #form1 {
 	margin: 20px;
 	color: #0100a2;
@@ -88,7 +90,14 @@ img {
 
 .div-select {
 	display: flex;
-	gap: 130px;
+	gap: 210px;
+}
+#div-filiere{
+gap: 110px;
+}
+.civilité {
+width: 100px;
+	padding: 5px;
 }
 
 .sexe {
