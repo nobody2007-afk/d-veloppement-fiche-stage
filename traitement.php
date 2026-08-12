@@ -4,18 +4,22 @@ if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"] ?? ""));
-    $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"] ?? ""));
-    $poste = htmlspecialchars(trim($_POST["poste"] ?? ""));
-    $entreprise = htmlspecialchars(trim($_POST["entreprise"] ?? ""));
-    $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"] ?? ""));
-    $date_edition = htmlspecialchars(trim($_POST["date_edition"] ?? ""));
-    $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"] ?? ""));
-    $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"] ?? ""));
-    $filiere = htmlspecialchars(trim($_POST["filiere"] ?? ""));
-    $niveau = htmlspecialchars(trim($_POST["niveau"] ?? ""));
-    $sexe = htmlspecialchars(trim($_POST["sexe"] ?? ""));
-    $civilite = htmlspecialchars(trim($_POST["civilite"] ?? ""));
+    $count = count($_SESSION['donnees']);
+    $key = "donnee" . ($count + 1);
+
+
+    $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
+    $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
+    $poste = htmlspecialchars(trim($_POST["poste"]));
+    $entreprise = htmlspecialchars(trim($_POST["entreprise"]));
+    $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"]));
+    $date_edition = htmlspecialchars(trim($_POST["date_edition"]));
+    $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"]));
+    $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"]));
+    $filiere = htmlspecialchars(trim($_POST["filiere"]));
+    $niveau = htmlspecialchars(trim($_POST["niveau"]));
+    $sexe = htmlspecialchars(trim($_POST["sexe"]));
+    $civilite = htmlspecialchars(trim($_POST["civilite"]));
     $_SESSION['donnees'][] = [
         "nom_editeur" => $nom_editeur,
         "prenom_editeur"  => $prenom_editeur,
@@ -30,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "sexe" => $sexe,
         "civilite" => $civilite,
     ];
+    header("Location: traitement.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -71,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div>
                         <label class="label-champ">Structure d'accueil</label>
                         <input class="input-champ" type="text" name="entreprise" required
-                            placeholder="Saisir le nom de l'entreprise...">
+                            placeholder="Saisir le nom de la structure...">
                     </div>
                 </div>
 
@@ -148,24 +154,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="div-button">
                 <button type="submit">Enregistrer</button>
                 <button type="reset">Réinitialiser</button>
+
             </div>
         </form>
     </div>
     <table>
         <tr>
             <td>#</td>
-            <td>Nom du signataire</td>
-            <td>Prénom du signataire</td>
-            <td>Poste</td>
-            <td>Entreprise</td>
-            <td>Lieu d'édition</td>
-            <td>Date d'édition</td>
             <td>Nom étudiant</td>
             <td>Prénoms étudiant</td>
             <td>Filière</td>
             <td>Niveau</td>
             <td>Sexe</td>
             <td>Civilité</td>
+            <td>Nom du signataire</td>
+            <td>Prénom du signataire</td>
+            <td>Poste</td>
+            <td>Structure d'accueil</td>
+            <td>Lieu d'édition</td>
+            <td>Date d'édition</td>
             <td>Action</td>
         </tr>
 
@@ -175,22 +182,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ?>
             <tr>
                 <td><?php echo $i; ?></td>
-                <td><?php echo $ligne["nom_editeur"]; ?></td>
-                <td><?php echo $ligne["prenom_editeur"]; ?></td>
-                <td><?php echo $ligne["poste"]; ?></td>
-                <td><?php echo $ligne["entreprise"]; ?></td>
-                <td><?php echo $ligne["lieu_edition"]; ?></td>
-                <td><?php echo $ligne["date_edition"]; ?></td>
                 <td><?php echo $ligne["nom_etudiant"]; ?></td>
                 <td><?php echo $ligne["prenom_etudiant"]; ?></td>
                 <td><?php echo $ligne["filiere"]; ?></td>
                 <td><?php echo $ligne["niveau"]; ?></td>
                 <td><?php echo $ligne["sexe"]; ?></td>
                 <td><?php echo $ligne["civilite"]; ?></td>
+                <td><?php echo $ligne["nom_editeur"]; ?></td>
+                <td><?php echo $ligne["prenom_editeur"]; ?></td>
+                <td><?php echo $ligne["poste"]; ?></td>
+                <td><?php echo $ligne["entreprise"]; ?></td>
+                <td><?php echo $ligne["lieu_edition"]; ?></td>
+                <td><?php echo $ligne["date_edition"]; ?></td>
+
                 <td>
-                    <button>Modifier</button>
-                    <button>Supprimer</button>
+                    <form action="traitement.php" method="POST">
+                        <button>Modifier</button>
+                    </form>
+                    <form action="traitement.php" method="POST">
+                        <button>Supprimer</button>
+                    </form>
+                    <form action="fiche.php" method="POST">
+                        <input style="display:none;" name="nom_etudiant" value="<?php echo $ligne['nom_etudiant']; ?>">
+                        <input style="display:none;" name="prenom_etudiant" value="<?php echo $ligne['prenom_etudiant']; ?>">
+                        <input style="display:none;" name="filiere" value="<?php echo $ligne['filiere']; ?>">
+                        <input style="display:none;" name="niveau" value="<?php echo $ligne['niveau']; ?>">
+                        <input style="display:none;" name="sexe" value="<?php echo $ligne['sexe']; ?>">
+                        <input style="display:none;" name="civilite" value="<?php echo $ligne['civilite']; ?>">
+                        <input style="display:none;" name="nom_editeur" value="<?php echo $ligne['nom_editeur']; ?>">
+                        <input style="display:none;" name="prenom_editeur" value="<?php echo $ligne['prenom_editeur']; ?>">
+                        <input style="display:none;" name="poste" value="<?php echo $ligne['poste']; ?>">
+                        <input style="display:none;" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
+                        <input style="display:none;" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
+                        <input style="display:none;" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
+                        
+                        <button type="submit">Prévisualiser</button>
+                    </form>
+
+                    <button>Imprimer</button>
+
                 </td>
+
             </tr>
         <?php
             $i = $i + 1;
