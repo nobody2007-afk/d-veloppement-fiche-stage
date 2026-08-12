@@ -1,10 +1,8 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"] ?? ""));
     $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"] ?? ""));
@@ -18,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $niveau = htmlspecialchars(trim($_POST["niveau"] ?? ""));
     $sexe = htmlspecialchars(trim($_POST["sexe"] ?? ""));
     $civilite = htmlspecialchars(trim($_POST["civilite"] ?? ""));
-
     $_SESSION['donnees'][] = [
         "nom_editeur" => $nom_editeur,
         "prenom_editeur"  => $prenom_editeur,
@@ -34,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "civilite" => $civilite,
     ];
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -192,8 +188,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </tr>
         <?php endforeach; ?>
     </table>
-
-
 </body>
-
 </html>
