@@ -1,17 +1,19 @@
 body {
 	color: rgb(8, 2, 37);
 	display: grid;
-	justify-content: center;
-	align-items: center;
+	justify-items: center;
+	min-height: 100vh;
 	margin: 0;
 	background: #f4f6f9;
 }
 
 #a {
-	width: auto;
+	width: fit-content;
 }
 
 #form1 {
+	align-items: center;
+	justify-items: center;
 	margin: 20px;
 	color: #0100a2;
 	width: auto;
@@ -50,8 +52,6 @@ img {
 	height: auto;
 	width: 500px;
 	padding: 20px;
-	margin-top: 20px;
-	margin-left: 20px;
 	margin-bottom: 0;
 
 }
@@ -92,13 +92,15 @@ img {
 	display: flex;
 	gap: 210px;
 }
-#div-filiere{
-gap: 110px;
+
+#div-filiere {
+	gap: 110px;
 }
-.civilité {
-width: 100px;
+
+/* .civilite {
+	width: 100px;
 	padding: 5px;
-}
+} */
 
 .sexe {
 	width: 100px;

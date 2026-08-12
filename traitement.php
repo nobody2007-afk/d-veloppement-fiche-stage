@@ -1,192 +1,199 @@
 <?php
-// affichage.php
-// Récupère et nettoie les données POST pour afficher la page dynamique.
+session_start();
 
-function clean($v)
-{
-    return htmlspecialchars(trim((string)$v), ENT_QUOTES, 'UTF-8');
+if (!isset($_SESSION['donnees'])) {
+    $_SESSION['donnees'] = [];
 }
 
-// Valeurs par défaut si la page est ouverte sans POST
-$defaults = [
-    'nom_editeur'     => 'Nom éditeur',
-    'prenom_editeur'  => 'Prénom éditeur',
-    'poste'           => 'Poste',
-    'entreprise'      => 'DGTCP',
-    'lieu_edition'    => 'Cotonou',
-    'date_edition'    => date('Y-m-d'),
-    'nom_etudiant'    => 'EKPO',
-    'prenom_etudiant' => '',
-    'filiere'         => 'Développement Web',
-    'niveau'          => '1ère année',
-    'sexe'            => 'Masculin',
-    'civilite'        => 'M.'
-];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"] ?? ""));
+    $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"] ?? ""));
+    $poste = htmlspecialchars(trim($_POST["poste"] ?? ""));
+    $entreprise = htmlspecialchars(trim($_POST["entreprise"] ?? ""));
+    $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"] ?? ""));
+    $date_edition = htmlspecialchars(trim($_POST["date_edition"] ?? ""));
+    $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"] ?? ""));
+    $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"] ?? ""));
+    $filiere = htmlspecialchars(trim($_POST["filiere"] ?? ""));
+    $niveau = htmlspecialchars(trim($_POST["niveau"] ?? ""));
+    $sexe = htmlspecialchars(trim($_POST["sexe"] ?? ""));
+    $civilite = htmlspecialchars(trim($_POST["civilite"] ?? ""));
 
-// Si la page reçoit un POST, on remplace les valeurs par les données envoyées
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom_editeur     = clean($_POST['nom_editeur']     ?? $defaults['nom_editeur']);
-    $prenom_editeur  = clean($_POST['prenom_editeur']  ?? $defaults['prenom_editeur']);
-    $poste           = clean($_POST['poste']           ?? $defaults['poste']);
-    $entreprise      = clean($_POST['entreprise']      ?? $defaults['entreprise']);
-    $lieu_edition    = clean($_POST['lieu_edition']    ?? $defaults['lieu_edition']);
-    $date_edition    = clean($_POST['date_edition']    ?? $defaults['date_edition']);
-
-    $nom_etudiant    = clean($_POST['nom_etudiant']    ?? $defaults['nom_etudiant']);
-    $prenom_etudiant = clean($_POST['prenom_etudiant'] ?? $defaults['prenom_etudiant']);
-    $filiere         = clean($_POST['filiere']         ?? $defaults['filiere']);
-    $niveau          = clean($_POST['niveau']          ?? $defaults['niveau']);
-    $sexe            = clean($_POST['sexe']            ?? $defaults['sexe']);
-    $civilite        = clean($_POST['civilite']        ?? $defaults['civilite']);
-} else {
-    // Pas de POST : on utilise les valeurs par défaut
-    $nom_editeur     = $defaults['nom_editeur'];
-    $prenom_editeur  = $defaults['prenom_editeur'];
-    $poste           = $defaults['poste'];
-    $entreprise      = $defaults['entreprise'];
-    $lieu_edition    = $defaults['lieu_edition'];
-    $date_edition    = $defaults['date_edition'];
-
-    $nom_etudiant    = $defaults['nom_etudiant'];
-    $prenom_etudiant = $defaults['prenom_etudiant'];
-    $filiere         = $defaults['filiere'];
-    $niveau          = $defaults['niveau'];
-    $sexe            = $defaults['sexe'];
-    $civilite        = $defaults['civilite'];
+    $_SESSION['donnees'][] = [
+        "nom_editeur" => $nom_editeur,
+        "prenom_editeur"  => $prenom_editeur,
+        "poste" => $poste,
+        "entreprise" => $entreprise,
+        "lieu_edition" => $lieu_edition,
+        "date_edition" => $date_edition,
+        "nom_etudiant" => $nom_etudiant,
+        "prenom_etudiant" => $prenom_etudiant,
+        "filiere" => $filiere,
+        "niveau" => $niveau,
+        "sexe" => $sexe,
+        "civilite" => $civilite,
+    ];
 }
 
-// Formatage de la date pour affichage lisible (ex: 24 juillet 2026)
-function formatDateFr($isoDate)
-{
-    $ts = strtotime($isoDate);
-    if ($ts === false) return $isoDate;
-    setlocale(LC_TIME, 'fr_FR.utf8', 'fr_FR', 'fr');
-    return strftime('%e %B %Y', $ts);
-}
-
-$affichage_date = formatDateFr($date_edition);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Présentation du Stagiaire</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Résultats du formulaire</title>
+    <link rel="stylesheet" href="style1.css">
 </head>
 
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <img src="pigier-benin.png" width="150" height="50" alt="Logo pigier" id="logopigier">
-            </div>
-            <div id="header-right">
-                <div class="header-right">
-                    <div class="iso">
-                        <h1 id="ecole">Ecole Certifiée ISO</h1>
-                        <p id="iso">9001/2015 <br>21001/2018</p>
+    <div id="a">
+        <form id="form1" action="traitement.php" method="POST" class="form">
+            <img width="100px" src="pigier-benin.png" alt="logo">
+
+            <fieldset id="fieldset-1">
+                <legend>Informations générales </legend>
+
+                <div class="div-fieldset-1">
+                    <div>
+                        <label class="label-champ">Nom du signataire</label>
+                        <input class="input-champ" type="text" name="nom_editeur" required
+                            placeholder="Saisir le nom du signataire...">
                     </div>
-                    <div class="iso1">
-                        <p id="formation">Formation & Placement des Apprenants</p>
-                        <p id="certification">APAVE Certification - Certificat N°312032/r1</p>
+
+                    <div>
+                        <label class="label-champ">Poste du signataire</label>
+                        <input class="input-champ" type="text" name="poste" required placeholder="Saisir le poste du signataire...">
                     </div>
                 </div>
 
-                <div class="logo1">
-                    <img src="logo1.jpeg" width="100" height="100" alt="Logo ISO" id="logo">
+                <div class="div-fieldset-1">
+                    <div>
+                        <label class="label-champ">Prénom du signataire</label>
+                        <input class="input-champ" type="text" name="prenom_editeur" required placeholder="Saisir le prénom...">
+                    </div>
+
+                    <div>
+                        <label class="label-champ">Structure d'accueil</label>
+                        <input class="input-champ" type="text" name="entreprise" required
+                            placeholder="Saisir le nom de l'entreprise...">
+                    </div>
                 </div>
+
+                <div class="div-fieldset-1">
+                    <div>
+                        <label class="label-champ">Lieu d'édition</label>
+                        <input class="input-champ" type="text" name="lieu_edition" required
+                            placeholder="Saisir le lieu d'édition...">
+                    </div>
+
+                    <div>
+                        <label class="label-champ">Date d'édition</label>
+                        <input class="input-champ" type="date" name="date_edition" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="fieldset-2">
+                <legend>Informations académiques</legend>
+
+                <div class="div-fieldset-2">
+                    <div>
+                        <label class="label-champ">Nom de l'étudiant</label>
+                        <input class="input-champ" type="text" name="nom_etudiant" required
+                            placeholder="Saisir le nom de l'étudiant...">
+                    </div>
+
+                    <div>
+                        <label class="label-champ">Prénoms de l'étudiant</label>
+                        <input class="input-champ" type="text" name="prenom_etudiant" required placeholder="Saisir le prénom de l'étudiant...">
+                    </div>
+                </div>
+
+                <div class="div-fieldset-2" id="div-filiere">
+                    <div>
+                        <label class="label-select">Filière</label>
+                        <select class="input-select" name="filiere" required>
+                            <option value="Développement Web">Développement web</option>
+                            <option value="Création Digitale">Création digitale</option>
+                            <option value="Communication Digitale">Communication digitale</option>
+                            <option value="Génie Civil">Génie Civil</option>
+                            <option value="Cybersécurité">Cybersécurité</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="label-select">Niveau</label>
+                        <label><input type="radio" name="niveau" value="1ère année" required> 1ère année</label>
+                        <label><input type="radio" name="niveau" value="2ème année"> 2ème année</label>
+                        <label><input type="radio" name="niveau" value="3ème année"> 3ème année</label>
+                    </div>
+                </div>
+
+                <div class="div-select">
+                    <div>
+                        <label class="label-champ">Sexe</label>
+                        <select class="sexe" name="sexe" required>
+                            <option value="Masculin">Masculin</option>
+                            <option value="Féminin">Féminin</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="label-champ">Civilité</label>
+                        <select class="civilite" name="civilite" required>
+                            <option value="M.">M.</option>
+                            <option value="Mme.">Mme.</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="div-button">
+                <button type="submit">Enregistrer</button>
+                <button type="reset">Réinitialiser</button>
             </div>
-        </div>
-        <div class="bande-header">
-            <div id="bande-or-header"></div>
-            <div id="bande-bleu-header"></div>
-        </div>
-    </header>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Nom du signataire</td>
+            <td>Prénom du signataire</td>
+            <td>Poste</td>
+            <td>Entreprise</td>
+            <td>Lieu d'édition</td>
+            <td>Date d'édition</td>
+            <td>Nom étudiant</td>
+            <td>Prénoms étudiant</td>
+            <td>Filière</td>
+            <td>Niveau</td>
+            <td>Sexe</td>
+            <td>Civilité</td>
+            <td>Action</td>
+        </tr>
 
-    <section id="page">
-        <p><?= 'Cotonou, le ' . $affichage_date ?></p>
-
-        <div id="entreprise">
-            <label id="text">Entreprise</label>
-            <input class="form-control" type="text" name="entreprise" value="<?= $entreprise ?>" readonly>
-        </div>
-
-        <div id="presentation">
-            <p id="paragraph">PRESENTATION DU STAGIAIRE</p>
-        </div>
-
-        <p><strong>Monsieur/Madame,</strong></p>
-
-        <p>Vous avez bien voulu accepter de prendre en stage un(e) de nos apprenant(e)s et nous vous remercions.</p>
-
-        <div id="presentation-details">
-            <div class="form-group2">
-                <label class="information">Nous avons le plaisir de vous présenter :</label>
-                <input class="form-control2" type="text" name="nom_etudiant"
-                    value="<?= htmlspecialchars((!empty($civilite) ? $civilite . ' ' : '') . $nom_etudiant . ' ' . $prenom_etudiant, ENT_QUOTES, 'UTF-8') ?>"
-                    readonly>
-            </div>
-
-            <div class="form-group2">
-                <label class="information" id="filiere-label">De la filière</label>
-                <input class="form-control2" type="text" name="filiere"
-                    value="<?= htmlspecialchars($filiere . ' - ' . $niveau, ENT_QUOTES, 'UTF-8') ?>" readonly>
-            </div>
+        <?php foreach ($_SESSION['donnees'] as $index => $ligne): ?>
+            <tr>
+                <td><?= $index + 1 ?></td>
+                <td><?= $ligne["nom_editeur"] ?></td>
+                <td><?= $ligne["prenom_editeur"] ?></td>
+                <td><?= $ligne["poste"] ?></td>
+                <td><?= $ligne["entreprise"] ?></td>
+                <td><?= $ligne["lieu_edition"] ?></td>
+                <td><?= $ligne["date_edition"] ?></td>
+                <td><?= $ligne["nom_etudiant"] ?></td>
+                <td><?= $ligne["prenom_etudiant"] ?></td>
+                <td><?= $ligne["filiere"] ?></td>
+                <td><?= $ligne["niveau"] ?></td>
+                <td><?= $ligne["sexe"] ?></td>
+                <td><?= $ligne["civilite"] ?></td>
+                <td><button>Modifier</button> <button>Supprimer</button></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 
 
-            <p id="confirmation">Nous vous confirmons :
-            <ul>
-                <li>qu'aucune rémunération du stagiaire n'est exigée</li>
-                <li>que ce stage fait partie de sa formation et que l'apprenant(e) est couvert(e) par sa police d'assurance.</li>
-            </ul>
-            </p>
-
-            <p>Le <strong><?= $poste ?> </strong>est chargé(e) du suivi de ce stagiaire.</p>
-
-            <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong>Monsieur le Directeur Général</strong>, l'expression de notre parfaite considération.</p>
-
-            <p id="attache"><strong><?= $poste ?></strong></p>
-
-            <!-- Signature dynamique : si tu veux afficher le signataire depuis le formulaire, remplace par $nom_editeur / $prenom_editeur -->
-            <p id="signature-nom"><strong><u><?= ($prenom_editeur ? $prenom_editeur . ' ' : '') . $nom_editeur ?></u></strong></p>
-    </section>
-
-    <footer>
-        <div class="bande-footer">
-            <div id="bande-bleu-footer"></div>
-            <div id="bande-or-footer"></div>
-        </div>
-        <div id="div1">
-            <p id="ecole-footer">Une Ecole du Groupe Eduservices (France)</p>
-        </div>
-        <div class="footer-content">
-            <div class="footer-section">
-                <p>ISTEG SARL au Capital de 1.000 000 FCFA / RCCM : RB-COTONOU B 8049</p>
-            </div>
-            <div class="footer-section">
-                <p><img src="map.png" alt="" width="10px" height="15px"> C/1270 Rue 320 Immeuble PIGIER-BENIN, AYIDOTE-AGONTIKON</p>
-            </div>
-            <div class="footer-section">
-                <p>01 BP 2411 COTONOU RB</p>
-            </div>
-        </div>
-        <div class="footer-content2">
-            <div class="footer-section2">
-                <p>(229) 21 30 29 06 / 97 84 67 28 / 97 58 41 38</p>
-            </div>
-            <div class="footer-section2">
-                <p><img src="internet.png" alt="" width="25px" height="15px" id="internet">www.pigier-benin.com</p>
-            </div>
-            <div class="footer-section2">
-                <p>pigierbeninofficiel</p>
-            </div>
-            <div class="footer-section newsletter">
-                <p>pigier.cotonou@pigierbenin.com / relations.marketing@pigierbenin.com</p>
-            </div>
-        </div>
-    </footer>
 </body>
 
 </html>
