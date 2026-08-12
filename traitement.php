@@ -169,24 +169,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <td>Action</td>
         </tr>
 
-        <?php foreach ($_SESSION['donnees'] as $index => $ligne): ?>
+        <?php
+        $i = 1;
+        foreach ($_SESSION['donnees'] as $ligne) {
+        ?>
             <tr>
-                <td><?= $index + 1 ?></td>
-                <td><?= $ligne["nom_editeur"] ?></td>
-                <td><?= $ligne["prenom_editeur"] ?></td>
-                <td><?= $ligne["poste"] ?></td>
-                <td><?= $ligne["entreprise"] ?></td>
-                <td><?= $ligne["lieu_edition"] ?></td>
-                <td><?= $ligne["date_edition"] ?></td>
-                <td><?= $ligne["nom_etudiant"] ?></td>
-                <td><?= $ligne["prenom_etudiant"] ?></td>
-                <td><?= $ligne["filiere"] ?></td>
-                <td><?= $ligne["niveau"] ?></td>
-                <td><?= $ligne["sexe"] ?></td>
-                <td><?= $ligne["civilite"] ?></td>
-                <td><button>Modifier</button> <button>Supprimer</button></td>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $ligne["nom_editeur"]; ?></td>
+                <td><?php echo $ligne["prenom_editeur"]; ?></td>
+                <td><?php echo $ligne["poste"]; ?></td>
+                <td><?php echo $ligne["entreprise"]; ?></td>
+                <td><?php echo $ligne["lieu_edition"]; ?></td>
+                <td><?php echo $ligne["date_edition"]; ?></td>
+                <td><?php echo $ligne["nom_etudiant"]; ?></td>
+                <td><?php echo $ligne["prenom_etudiant"]; ?></td>
+                <td><?php echo $ligne["filiere"]; ?></td>
+                <td><?php echo $ligne["niveau"]; ?></td>
+                <td><?php echo $ligne["sexe"]; ?></td>
+                <td><?php echo $ligne["civilite"]; ?></td>
+                <td>
+                    <button>Modifier</button>
+                    <button>Supprimer</button>
+                </td>
             </tr>
-        <?php endforeach; ?>
+        <?php
+            $i = $i + 1;
+        }
+        ?>
     </table>
 </body>
+
 </html>
