@@ -6,7 +6,7 @@ if (!isset($_SESSION['donnees'])) {
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['action']) && $_POST['action'] === 'supprimer') {
-        $ligne = intval($_POST['ligne']);
+        $ligne =$_POST['ligne'];
         if (isset($_SESSION['donnees'][$ligne])) {
             unset($_SESSION['donnees'][$ligne]);
             $_SESSION['donnees'] = array_values($_SESSION['donnees']);
