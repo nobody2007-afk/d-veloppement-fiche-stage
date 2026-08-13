@@ -11,10 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             unset($_SESSION['donnees'][$ligne]);
             $_SESSION['donnees'] = array_values($_SESSION['donnees']);
         }
-    } elseif ($_POST['action'] === 'modifier') {
-        $ligne = $_POST['ligne'];
-        $donnee = $_SESSION['donnees'][$ligne];
-    } else {
+    }else {
         $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
         $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
         $poste = htmlspecialchars(trim($_POST["poste"]));
