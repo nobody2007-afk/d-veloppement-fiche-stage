@@ -4,42 +4,42 @@ if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (array_key_exists('action', $_POST) && $_POST['action'] === 'supprimer') {
 
-    if ($_POST['action'] === 'supprimer') {
-        $ligne = $_POST['ligne'];
-        if (!empty($ligne) && isset($_SESSION['donnees'][$ligne])){
-            unset($_SESSION['donnees'][$ligne]);
-            $_SESSION['donnees'] = array_values($_SESSION['donnees']);
-            $_POST['ligne']= null;  
+        if (isset($_POST['ligne'])) {
+            unset($_SESSION['donnees'][$_POST['ligne']]);
+            // $_SESSION['donnees'] = array_values($_SESSION['donnees']);
         }
-    }else {
-        $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
-        $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
-        $poste = htmlspecialchars(trim($_POST["poste"]));
-        $entreprise = htmlspecialchars(trim($_POST["entreprise"]));
-        $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"]));
-        $date_edition = htmlspecialchars(trim($_POST["date_edition"]));
-        $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"]));
-        $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"]));
-        $filiere = htmlspecialchars(trim($_POST["filiere"]));
-        $niveau = htmlspecialchars(trim($_POST["niveau"]));
-        $sexe = htmlspecialchars(trim($_POST["sexe"]));
-        $civilite = htmlspecialchars(trim($_POST["civilite"]));
-        if($nom_etudiant && $prenom_etudiant){
-        $_SESSION['donnees'][] = [
-            "nom_editeur" => $nom_editeur,
-            "prenom_editeur"  => $prenom_editeur,
-            "poste" => $poste,
-            "entreprise" => $entreprise,
-            "lieu_edition" => $lieu_edition,
-            "date_edition" => $date_edition,
-            "nom_etudiant" => $nom_etudiant,
-            "prenom_etudiant" => $prenom_etudiant,
-            "filiere" => $filiere,
-            "niveau" => $niveau,
-            "sexe" => $sexe,
-            "civilite" => $civilite,
-        ];
+    } else {
+        if (isset($_POST["nom_etudiant"]) && isset($_POST["prenom_etudiant"])) {
+            $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
+            $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
+            $poste = htmlspecialchars(trim($_POST["poste"]));
+            $entreprise = htmlspecialchars(trim($_POST["entreprise"]));
+            $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"]));
+            $date_edition = htmlspecialchars(trim($_POST["date_edition"]));
+            $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"]));
+            $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"]));
+            $filiere = htmlspecialchars(trim($_POST["filiere"]));
+            $niveau = htmlspecialchars(trim($_POST["niveau"]));
+            $sexe = htmlspecialchars(trim($_POST["sexe"]));
+            $civilite = htmlspecialchars(trim($_POST["civilite"]));
+            $id = "cpt_" . (count($_SESSION['donnees']) + 1);
+            $_SESSION['donnees'][$id] = [
+
+                "nom_editeur" => $nom_editeur,
+                "prenom_editeur"  => $prenom_editeur,
+                "poste" => $poste,
+                "entreprise" => $entreprise,
+                "lieu_edition" => $lieu_edition,
+                "date_edition" => $date_edition,
+                "nom_etudiant" => $nom_etudiant,
+                "prenom_etudiant" => $prenom_etudiant,
+                "filiere" => $filiere,
+                "niveau" => $niveau,
+                "sexe" => $sexe,
+                "civilite" => $civilite,
+            ];
         }
     }
 }
@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <?php
         $i = 1;
-        foreach ($_SESSION['donnees'] as $ligne) {
+        foreach ($_SESSION['donnees'] as $key => $ligne) {
         ?>
             <tr>
                 <td><?php echo $i; ?></td>
@@ -206,9 +206,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input style="display: none;" name="ligne" value="<?php echo $i - 1; ?>">
                         <button type="submit" name="action" value="modifier">Modifier</button>
                     </form>
-                    <?php $index = $i - 1; ?>
                     <form action="traitement.php" method="POST">
-                        <input style="display: none;" name="ligne" value="<?php echo $i - 1; ?>">
+                        <input style="display: none;" name="ligne" value="<?php echo $key; ?>">
+                        <input type="hidden" value="<?php echo $ligne["prenom_etudiant"]; ?>">
                         <button type="submit" name="action" value="supprimer">Supprimer</button>
                     </form>
                     <form action="fiche.php" method="POST">
