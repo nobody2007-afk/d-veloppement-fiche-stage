@@ -91,13 +91,13 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
             </ul>
             </p>
 
-            <p>Le <strong><?php echo $poste; ?></strong>est chargé(e) du suivi de ce stagiaire.</p>
+            <p>Le <strong><?php echo $poste; ?></strong> de PIGIER-BENIN est chargé(e) du suivi de ce stagiaire.</p>
 
             <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong>Monsieur le Directeur Général</strong>, l'expression de notre parfaite considération.</p>
 
             <p id="attache"><strong><?php echo $poste; ?></strong></p>
 
-            <p id="signature-nom"><strong><u><?php echo $prenom_editeur . ' ' . $nom_editeur; ?></u></strong></p>
+            <p id="signature-nom"><strong><?php echo $prenom_editeur . ' ' . $nom_editeur; ?></strong></p>
         </div>
     </section>
 

@@ -6,40 +6,42 @@ if (!isset($_SESSION['donnees'])) {
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($_POST['action'] === 'supprimer') {
-        $ligne =$_POST['ligne'];
+        $ligne = $_POST['ligne'];
         if (isset($_SESSION['donnees'][$ligne])) {
             unset($_SESSION['donnees'][$ligne]);
             $_SESSION['donnees'] = array_values($_SESSION['donnees']);
         }
-    }else{
-    $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
-    $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
-    $poste = htmlspecialchars(trim($_POST["poste"]));
-    $entreprise = htmlspecialchars(trim($_POST["entreprise"]));
-    $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"]));
-    $date_edition = htmlspecialchars(trim($_POST["date_edition"]));
-    $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"]));
-    $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"]));
-    $filiere = htmlspecialchars(trim($_POST["filiere"]));
-    $niveau = htmlspecialchars(trim($_POST["niveau"]));
-    $sexe = htmlspecialchars(trim($_POST["sexe"]));
-    $civilite = htmlspecialchars(trim($_POST["civilite"]));
-    $_SESSION['donnees'][] = [
-        "nom_editeur" => $nom_editeur,
-        "prenom_editeur"  => $prenom_editeur,
-        "poste" => $poste,
-        "entreprise" => $entreprise,
-        "lieu_edition" => $lieu_edition,
-        "date_edition" => $date_edition,
-        "nom_etudiant" => $nom_etudiant,
-        "prenom_etudiant" => $prenom_etudiant,
-        "filiere" => $filiere,
-        "niveau" => $niveau,
-        "sexe" => $sexe,
-        "civilite" => $civilite,
-    ];
+    } elseif ($_POST['action'] === 'modifier') {
+        $ligne = $_POST['ligne'];
+        $donnee = $_SESSION['donnees'][$ligne];
+    } else {
+        $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
+        $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
+        $poste = htmlspecialchars(trim($_POST["poste"]));
+        $entreprise = htmlspecialchars(trim($_POST["entreprise"]));
+        $lieu_edition = htmlspecialchars(trim($_POST["lieu_edition"]));
+        $date_edition = htmlspecialchars(trim($_POST["date_edition"]));
+        $nom_etudiant = htmlspecialchars(trim($_POST["nom_etudiant"]));
+        $prenom_etudiant = htmlspecialchars(trim($_POST["prenom_etudiant"]));
+        $filiere = htmlspecialchars(trim($_POST["filiere"]));
+        $niveau = htmlspecialchars(trim($_POST["niveau"]));
+        $sexe = htmlspecialchars(trim($_POST["sexe"]));
+        $civilite = htmlspecialchars(trim($_POST["civilite"]));
+        $_SESSION['donnees'][] = [
+            "nom_editeur" => $nom_editeur,
+            "prenom_editeur"  => $prenom_editeur,
+            "poste" => $poste,
+            "entreprise" => $entreprise,
+            "lieu_edition" => $lieu_edition,
+            "date_edition" => $date_edition,
+            "nom_etudiant" => $nom_etudiant,
+            "prenom_etudiant" => $prenom_etudiant,
+            "filiere" => $filiere,
+            "niveau" => $niveau,
+            "sexe" => $sexe,
+            "civilite" => $civilite,
+        ];
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -65,18 +67,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input class="input-champ" type="text" name="nom_editeur" required
                             placeholder="Saisir le nom du signataire...">
                     </div>
-
-                    <div>
-                        <label class="label-champ">Poste du signataire</label>
-                        <input class="input-champ" type="text" name="poste" required placeholder="Saisir le poste du signataire...">
-                    </div>
-                </div>
-
-                <div class="div-fieldset-1">
                     <div>
                         <label class="label-champ">Prénom du signataire</label>
                         <input class="input-champ" type="text" name="prenom_editeur" required placeholder="Saisir le prénom...">
                     </div>
+
+                </div>
+
+                <div class="div-fieldset-1">
+                    <div>
+                        <label class="label-champ">Poste du signataire</label>
+                        <input class="input-champ" type="text" name="poste" required placeholder="Saisir le poste du signataire...">
+                    </div>
+
 
                     <div>
                         <label class="label-champ">Structure d'accueil</label>
@@ -200,11 +203,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 <td>
                     <form action="traitement.php" method="POST">
-                        <button>Modifier</button>
+                        <input style="display: none;" name="ligne" value="<?php echo $i - 1; ?>">
+                        <button type="submit" name="action" value="modifier">Modifier</button>
                     </form>
                     <?php $index = $i - 1; ?>
                     <form action="traitement.php" method="POST">
-                        <input style="display: none;" type="text" name="ligne" value="<?php echo $i - 1; ?>">
+                        <input style="display: none;" name="ligne" value="<?php echo $i - 1; ?>">
                         <button type="submit" name="action" value="supprimer">Supprimer</button>
                     </form>
                     <form action="fiche.php" method="POST">
@@ -222,8 +226,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input style="display:none;" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
                         <button type="submit">Prévisualiser</button>
                     </form>
-
-                    <button>Imprimer</button>
+                    <form action="fiche.php" method="POST">
+                        <button type="submit">Imprimer</button>
+                    </form>
 
                 </td>
 
