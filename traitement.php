@@ -4,10 +4,14 @@ if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $count = count($_SESSION['donnees']);
-    $key = "donnee" . ($count + 1);
 
-
+    if (isset($_POST['action']) && $_POST['action'] === 'supprimer') {
+        $ligne = intval($_POST['ligne']);
+        if (isset($_SESSION['donnees'][$ligne])) {
+            unset($_SESSION['donnees'][$ligne]);
+            $_SESSION['donnees'] = array_values($_SESSION['donnees']);
+        }
+    }else{
     $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
     $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
     $poste = htmlspecialchars(trim($_POST["poste"]));
@@ -34,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "sexe" => $sexe,
         "civilite" => $civilite,
     ];
-    header("Location: traitement.php");
-    exit;
+    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -137,7 +141,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <select class="sexe" name="sexe" required>
                             <option value="Masculin">Masculin</option>
                             <option value="Féminin">Féminin</option>
-                            <option value="Autre">Autre</option>
                         </select>
                     </div>
 
@@ -152,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </fieldset>
 
             <div class="div-button">
-                <button type="submit">Enregistrer</button>
+                <button type="submit" name="action">Enregistrer</button>
                 <button type="reset">Réinitialiser</button>
 
             </div>
@@ -199,8 +202,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <form action="traitement.php" method="POST">
                         <button>Modifier</button>
                     </form>
+                    <?php $index = $i - 1; ?>
                     <form action="traitement.php" method="POST">
-                        <button>Supprimer</button>
+                        <input style="display: none;" type="text" name="ligne" value="<?php echo $i - 1; ?>">
+                        <button type="submit" name="action" value="supprimer">Supprimer</button>
                     </form>
                     <form action="fiche.php" method="POST">
                         <input style="display:none;" name="nom_etudiant" value="<?php echo $ligne['nom_etudiant']; ?>">
@@ -215,7 +220,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <input style="display:none;" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
                         <input style="display:none;" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
                         <input style="display:none;" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
-                        
                         <button type="submit">Prévisualiser</button>
                     </form>
 
