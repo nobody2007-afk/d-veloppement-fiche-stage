@@ -7,9 +7,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($_POST['action'] === 'supprimer') {
         $ligne = $_POST['ligne'];
-        if (isset($_SESSION['donnees'][$ligne])) {
+        if (!empty($ligne) && isset($_SESSION['donnees'][$ligne])){
             unset($_SESSION['donnees'][$ligne]);
             $_SESSION['donnees'] = array_values($_SESSION['donnees']);
+            $_POST['ligne']= null;  
         }
     }else {
         $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
@@ -24,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $niveau = htmlspecialchars(trim($_POST["niveau"]));
         $sexe = htmlspecialchars(trim($_POST["sexe"]));
         $civilite = htmlspecialchars(trim($_POST["civilite"]));
+        if($nom_etudiant && $prenom_etudiant){
         $_SESSION['donnees'][] = [
             "nom_editeur" => $nom_editeur,
             "prenom_editeur"  => $prenom_editeur,
@@ -38,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             "sexe" => $sexe,
             "civilite" => $civilite,
         ];
+        }
     }
 }
 ?>
