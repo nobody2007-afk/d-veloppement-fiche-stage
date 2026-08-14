@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
+//jhbujhy
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (array_key_exists('action', $_POST) && $_POST['action'] === 'supprimer') {
 
