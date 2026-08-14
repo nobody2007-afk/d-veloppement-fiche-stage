@@ -1,5 +1,4 @@
 <?php
-
 $nom_editeur     = $_POST['nom_editeur'];
 $prenom_editeur  = $_POST['prenom_editeur'];
 $poste           = $_POST['poste'];
@@ -11,7 +10,44 @@ $prenom_etudiant = $_POST['prenom_etudiant'];
 $filiere         = $_POST['filiere'];
 $niveau          = $_POST['niveau'];
 $sexe            = $_POST['sexe'];
+$sexe_signataire = $_POST['sexe_signataire'];
 $civilite        = $_POST['civilite'];
+$identification;
+$suite;
+$simple;
+$bro;
+$logique;
+
+if ($sexe_signataire === 'Masculin') {
+    $identification = 'Monsieur';
+} else {
+    $identification = 'Madame';
+}
+
+if ($sexe_signataire === 'Masculin') {
+    $suite = 'le Directeur Général';
+} else {
+    $suite = 'la Directrice Générale';
+}
+
+if ($sexe=== 'Masculin') {
+    $simple = 'un de nos apprenants';
+} else {
+    $simple = 'une de nos apprenantes';
+}
+
+if ($sexe === 'Masculin') {
+    $bro = 'l\'apprenant est couvert';
+} else {
+    $bro = 'l\'apprenante est couverte';
+}
+
+if ($sexe_signataire === 'Masculin') {
+    $logique = 'chargé';
+} else {
+    $logique = 'chargée';
+}
+
 
 $affichage_date = date('d/m/Y', strtotime($date_edition));
 ?>
@@ -55,7 +91,7 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
     </header>
 
     <section id="page">
-        <p><?php echo $lieu_edition, ',le ' . $affichage_date; ?></p>
+        <p><?php echo $lieu_edition, ', le ' . $affichage_date; ?></p>
 
         <div id="entreprise">
             <label id="text">Entreprise</label>
@@ -66,9 +102,9 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
             <p id="paragraph">PRESENTATION DU STAGIAIRE</p>
         </div>
 
-        <p><strong>Monsieur/Madame,</strong></p>
+        <p><strong><?php echo $identification; ?>,</strong></p>
 
-        <p>Vous avez bien voulu accepter de prendre en stage un(e) de nos apprenant(e)s et nous vous remercions.</p>
+        <p>Vous avez bien voulu accepter de prendre en stage <?php echo $simple; ?> et nous vous remercions.</p>
 
         <div id="presentation-details">
             <div class="form-group2">
@@ -87,14 +123,13 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
             <p id="confirmation">Nous vous confirmons :
             <ul>
                 <li>qu'aucune rémunération du stagiaire n'est exigée</li>
-                <li>que ce stage fait partie de sa formation et que l'apprenant(e) est couvert(e) par sa police d'assurance.</li>
+                <li>que ce stage fait partie de sa formation et que <?php echo $bro; ?> par sa police d'assurance.</li>
             </ul>
             </p>
 
-            <p>Le <strong><?php echo $poste; ?></strong> de PIGIER-BENIN est chargé(e) du suivi de ce stagiaire.</p>
+            <p>Le <strong><?php echo $poste; ?></strong> de PIGIER-BENIN est <?php echo $logique; ?> du suivi de ce stagiaire.</p>
 
-            <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong>Monsieur/Madame</strong>, l'expression de notre parfaite considération.</p>
-
+<p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong><?php echo $identification; ?> <?php echo $suite; ?> </strong>, l'expression de notre parfaite considération.</p>
             <p id="attache"><strong><?php echo $poste; ?></strong></p>
 
             <p id="signature-nom"><strong><?php echo $prenom_editeur . ' ' . $nom_editeur; ?></strong></p>
