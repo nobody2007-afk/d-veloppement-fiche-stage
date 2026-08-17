@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div>
                         <label class="label-champ">Prénoms de l'étudiant</label>
                         <input class="input-champ" type="text" name="prenom_etudiant" required
-                            placeholder="Saisir le prénom de l'étudiant..."
+                            placeholder="  Saisir le prénom de l'étudiant..."
                             value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['prenom_etudiant'] : ''; ?>">
                     </div>
                 </div>
