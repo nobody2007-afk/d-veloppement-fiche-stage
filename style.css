@@ -79,23 +79,29 @@ body {
 }
 
 #bande-or-header {
-  margin-top: 10px;
-  height: 10px;
+  margin: 20px 0 0 0;
   flex: 1;
-  height: 10px;
+  height: 20px;
   background: #c9a227;
 }
 
 #bande-bleu-header {
   margin-top: 10px;
   flex: 1;
-  height: 25px;
+  height: 30px;
   background: #1e2942;
-  margin: 10px 10px 0 0;
+  margin: 10px 0 0 0;
   /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
+#bande-bleu-header2 {
+  margin-top: 10px;
+  flex: 0 0 15px;
+  height: 30px;
+  background: #1e2942;
+  margin: 10px 10px 0 10px;
 
+}
 
 /* Section */
 #page {
@@ -109,7 +115,7 @@ body {
 
 .aside-left {
   position: absolute;
-  top: 510px;
+  top: 320px;
   margin-left: -155px;
 }
 
@@ -217,24 +223,33 @@ li {
 /* Footer */
 .bande-footer {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 #bande-bleu-footer {
   flex: 1;
-  height: 25px;
+  height: 30px;
   background: #1e2942;
-  margin: 0 10px 0 0;
+  margin: 0 0 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
+}
+
+#bande-bleu-footer2 {
+  flex: 0 0 15px;
+  width: 5;
+  height: 30px;
+  background: #1e2942;
+  margin: 0 10px 0 10px;
   /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-or-footer {
   flex: 1;
-  height: 10px;
+  height: 15px;
   background: #c9a227;
 }
 
-footer> :not(.bande) {
+footer> :not(.bande-footer) {
   background: #f1f3f9;
   padding-left: 10px;
   padding-right: 10px;

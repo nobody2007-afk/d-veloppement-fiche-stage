@@ -88,6 +88,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
         </div>
         <div class="bande-header">
             <div id="bande-or-header"></div>
+            <div id="bande-bleu-header2"></div>
             <div id="bande-bleu-header"></div>
         </div>
     </header>
@@ -149,6 +150,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
     <footer>
         <div class="bande-footer">
             <div id="bande-bleu-footer"></div>
+            <div id="bande-bleu-footer2"></div>
             <div id="bande-or-footer"></div>
         </div>
         <div id="div1">
