@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+
 }
 
 /* Header */
@@ -94,12 +95,35 @@ body {
   /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
+aside {
+  position: absolute;
+  top: 510px;
+  margin-left: -155px;
+}
+
+aside img {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  width: 220px;
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
 
 /* Section */
 #page {
   max-width: 900px;
   margin: 20px auto;
   padding: 0 20px;
+  font-family: 'Times New Roman', serif;
+
 }
 
 #entreprise {
@@ -109,29 +133,29 @@ body {
 }
 
 #text {
-  margin-left: 200px;
+  margin-left: 170px;
   font-size: 18px;
 }
 
 .form-control {
-  width: auto;
+  width: 250px;
   padding: auto;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   border: 1px solid #000000;
   box-sizing: border-box;
-  font-family: 'Georgia', serif;
+  font-family: 'Times New Roman', serif;
   text-align: center;
 }
 
 .form-control2 {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
   border: 1px solid #000000;
   box-sizing: border-box;
-  font-family: 'Georgia', serif;
+  font-family: 'Times New Roman', serif;
 }
 
 
@@ -150,7 +174,7 @@ body {
 #paragraph {
   font-weight: bold;
   margin: 0;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .information {
@@ -175,7 +199,7 @@ li {
 #signature-nom {
   margin-top: 40px;
   text-decoration: underline;
-  
+
 }
 
 #attache {
@@ -242,18 +266,20 @@ footer> :not(.bande) {
 #internet {
   margin: 0 0 0 0;
 }
-#enveloppe{
-margin-bottom: 0;
-}
-#span1{
-background-color: #1e2942;
-padding: 1px 1px 1px 1px;
-margin-right: 5px;
+
+#enveloppe {
+  margin-bottom: 0;
 }
 
-#span2{
-background-color: #1e2942;
-color: white;
-padding: 2px 3px 3px 2px;
-border-radius: 20px;
+#span1 {
+  background-color: #1e2942;
+  padding: 1px 1px 1px 1px;
+  margin-right: 5px;
+}
+
+#span2 {
+  background-color: #1e2942;
+  color: white;
+  padding: 2px 3px 3px 2px;
+  border-radius: 20px;
 }

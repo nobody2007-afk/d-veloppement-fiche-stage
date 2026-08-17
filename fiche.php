@@ -49,8 +49,7 @@ if ($sexe_signataire === 'Masculin') {
 }
 
 
-$affichage_date = date('d/m/Y', strtotime($date_edition));
-?>
+$affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), 'd MMMM yyyy', 'fr_FR');?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -94,7 +93,9 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
     </header>
 
     <section id="page">
-        <p><?php echo $lieu_edition, ', le ' . $affichage_date; ?></p>
+                <aside><img src="eduservices.jpg" alt=""></aside>
+
+        <p><em><?php echo $lieu_edition, ', le ' . $affichage_date; ?></em></p>
 
         <div id="entreprise">
             <label id="text">Entreprise</label>
@@ -120,7 +121,7 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
             <div class="form-group2">
                 <label class="information" id="filiere-label">De la filière</label>
                 <input class="form-control2" type="text" name="filiere"
-                    value="<?php echo $filiere . ' - ' . $niveau; ?>" readonly>
+                    value="<?php echo $filiere .' '. $niveau; ?>" readonly>
             </div>
 
             <p id="confirmation">Nous vous confirmons :
