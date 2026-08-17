@@ -49,7 +49,7 @@ if ($sexe_signataire === 'Masculin') {
 }
 
 
-$affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), 'd MMMM yyyy', 'fr_FR');?>
+$affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), 'd MMMM yyyy', 'fr_FR'); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -93,8 +93,14 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
     </header>
 
     <section id="page">
-                <aside><img src="eduservices.jpg" alt=""></aside>
-
+        <aside class="aside-left"><img src="eduservices.jpg" alt=""></aside>
+        <aside class="aside-right">
+            <img src="vue.png" alt="">
+            <img src="auf.png" alt="">
+            <img src="office.jpg" alt="">
+            <img src="cisco.png" alt="">
+            <img src="ets.png" alt="">
+        </aside>
         <p><em><?php echo $lieu_edition, ', le ' . $affichage_date; ?></em></p>
 
         <div id="entreprise">
@@ -121,7 +127,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             <div class="form-group2">
                 <label class="information" id="filiere-label">De la filière</label>
                 <input class="form-control2" type="text" name="filiere"
-                    value="<?php echo $filiere .' '. $niveau; ?>" readonly>
+                    value="<?php echo $filiere . ' ' . $niveau; ?>" readonly>
             </div>
 
             <p id="confirmation">Nous vous confirmons :
@@ -164,7 +170,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
                 <p> <i class="fa-solid fa-phone"></i>(229) 21 30 29 06 / 97 84 67 28 / 97 58 41 38</p>
             </div>
             <div class="footer-section2">
-                <p><i class="fa-solid fa-globe" style="color: hsv(232, 90%, 87%);"></i>  www.pigier-benin.com</p>
+                <p><i class="fa-solid fa-globe" style="color: hsv(232, 90%, 87%);"></i> www.pigier-benin.com</p>
             </div>
             <div class="footer-section2">
                 <p><i class="fa-brands fa-facebook" style="color: hsv(232, 90%, 87%);"></i> pigierbeninofficiel</p>
