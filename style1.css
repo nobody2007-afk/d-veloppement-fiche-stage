@@ -122,7 +122,7 @@ img {
 	justify-content: center;
 }
 
-button {
+.button {
 	border: 3px;
 	border-radius: 5px;
 	background-color: #0100a2;
@@ -135,7 +135,7 @@ button {
 	margin-bottom: 20px;
 }
 
-button:hover {
+.button:hover {
 	background-color: rgb(24, 77, 142);
 	transform: translateY(-2px);
 	text-decoration: none;
@@ -152,4 +152,7 @@ td {
 	border: 1px black solid;
 	width: 50px;
 	padding: 10px;
+}
+#alpha{
+display: flex;
 }

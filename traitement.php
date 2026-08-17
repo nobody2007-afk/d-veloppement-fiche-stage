@@ -4,12 +4,43 @@ if (!isset($_SESSION['donnees'])) {
     $_SESSION['donnees'] = [];
 }
 //jhbujhy
+$mode_modification = false;
+$ligne_modification = null;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     if (array_key_exists('action', $_POST) && $_POST['action'] === 'supprimer') {
 
         if (isset($_POST['ligne'])) {
             unset($_SESSION['donnees'][$_POST['ligne']]);
-            // $_SESSION['donnees'] = array_values($_SESSION['donnees']);
+        }
+    } elseif ($_POST['action'] === 'modifier') {
+
+        $ligne_modification = $_POST['ligne'];
+
+        if (isset($_SESSION['donnees'][$ligne_modification])) {
+            $mode_modification = true;
+        }
+    } elseif ($_POST['action'] === 'enregistrer_modification') {
+
+        $ligne = $_POST['ligne'];
+
+        if (isset($_SESSION['donnees'][$ligne])) {
+
+            $_SESSION['donnees'][$ligne] = [
+                "nom_editeur" => htmlspecialchars(trim($_POST["nom_editeur"])),
+                "prenom_editeur" => htmlspecialchars(trim($_POST["prenom_editeur"])),
+                "poste" => htmlspecialchars(trim($_POST["poste"])),
+                "entreprise" => htmlspecialchars(trim($_POST["entreprise"])),
+                "lieu_edition" => htmlspecialchars(trim($_POST["lieu_edition"])),
+                "date_edition" => htmlspecialchars(trim($_POST["date_edition"])),
+                "nom_etudiant" => htmlspecialchars(trim($_POST["nom_etudiant"])),
+                "prenom_etudiant" => htmlspecialchars(trim($_POST["prenom_etudiant"])),
+                "filiere" => htmlspecialchars(trim($_POST["filiere"])),
+                "niveau" => htmlspecialchars(trim($_POST["niveau"])),
+                "sexe" => htmlspecialchars(trim($_POST["sexe"])),
+                "sexe_signataire" => htmlspecialchars(trim($_POST["sexe_signataire"])),
+                "civilite" => htmlspecialchars(trim($_POST["civilite"]))
+            ];
         }
     } else {
         if (isset($_POST["nom_etudiant"]) && isset($_POST["prenom_etudiant"])) {
@@ -54,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <title>Résultats du formulaire</title>
     <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/eb6368b0a2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -68,56 +100,67 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div>
                         <label class="label-champ">Nom du signataire</label>
                         <input class="input-champ" type="text" name="nom_editeur" required
-                            placeholder="Saisir le nom du signataire...">
+                            placeholder="Saisir le nom du signataire..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['nom_editeur'] : ''; ?>">
+
                     </div>
                     <div>
                         <label class="label-champ">Prénom du signataire</label>
-                        <input class="input-champ" type="text" name="prenom_editeur" required placeholder="Saisir le prénom...">
+                        <input class="input-champ" type="text" name="prenom_editeur" required
+                            placeholder="Saisir le prénom..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['prenom_editeur'] : ''; ?>">
+
                     </div>
-
-
                 </div>
 
                 <div class="div-fieldset-1">
                     <div>
                         <label class="label-champ">Poste du signataire</label>
-                        <input class="input-champ" type="text" name="poste" required placeholder="Saisir le poste du signataire...">
+                        <input class="input-champ" type="text" name="poste" required
+                            placeholder="Saisir le poste du signataire..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['poste'] : ''; ?>">
                     </div>
 
                     <div>
-                    <div>
-                        <label class="label-champ">Sexe de signataire</label>
-                        <select class="input-champ" name="sexe_signataire" required>
-                            <option value="">Sélectionner le sexe</option>
-                            <option value="Masculin">Masculin</option>
-                            <option value="Féminin">Féminin</option>
-                        </select>
+                        <div>
+                            <label class="label-champ">Sexe de signataire</label>
+                            <select class="input-champ" name="sexe_signataire" required>
+                                <option value="">Sélectionner le sexe</option>
+                                <option value="Masculin" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['sexe_signataire'] == 'Masculin') {
+                                                                echo 'selected';
+                                                            } ?>> Masculin</option>
+                                <option value="Féminin" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['sexe_signataire'] == 'Féminin') {
+                                                            echo 'selected';
+                                                        } ?>>Féminin</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-
                 </div>
 
                 <div class="div-fieldset-1">
                     <div>
                         <label class="label-champ">Lieu d'édition</label>
                         <input class="input-champ" type="text" name="lieu_edition" required
-                            placeholder="Saisir le lieu d'édition...">
+                            placeholder="Saisir le lieu d'édition..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['lieu_edition'] : ''; ?>">
                     </div>
 
                     <div>
                         <label class="label-champ">Date d'édition</label>
-                        <input class="input-champ" type="date" name="date_edition" required>
+                        <input class="input-champ" type="date" name="date_edition" required
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['date_edition'] : ''; ?>">
                     </div>
                 </div>
 
                 <div id="structure">
-                     <div>
+                    <div>
                         <label class="label-champ">Structure d'accueil</label>
                         <input class="input-champ" type="text" name="entreprise" required
-                            placeholder="Saisir le nom de la structure...">
+                            placeholder="Saisir le nom de la structure..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['entreprise'] : ''; ?>">
                     </div>
                 </div>
-               
+
             </fieldset>
 
             <fieldset id="fieldset-2">
@@ -127,12 +170,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div>
                         <label class="label-champ">Nom de l'étudiant</label>
                         <input class="input-champ" type="text" name="nom_etudiant" required
-                            placeholder="Saisir le nom de l'étudiant...">
+                            placeholder="Saisir le nom de l'étudiant..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['nom_etudiant'] : ''; ?>">
                     </div>
 
                     <div>
                         <label class="label-champ">Prénoms de l'étudiant</label>
-                        <input class="input-champ" type="text" name="prenom_etudiant" required placeholder="Saisir le prénom de l'étudiant...">
+                        <input class="input-champ" type="text" name="prenom_etudiant" required
+                            placeholder="Saisir le prénom de l'étudiant..."
+                            value="<?php echo $mode_modification ? $_SESSION['donnees'][$ligne_modification]['prenom_etudiant'] : ''; ?>">
                     </div>
                 </div>
 
@@ -140,19 +186,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div>
                         <label class="label-select">Filière</label>
                         <select class="input-select" name="filiere" required>
-                            <option value="Développement Web">Développement web</option>
-                            <option value="Création Digitale">Création digitale</option>
-                            <option value="Communication Digitale">Communication digitale</option>
-                            <option value="Génie Civil">Génie Civil</option>
-                            <option value="Cybersécurité">Cybersécurité</option>
+                            <option value="Développement Web" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['filiere'] == 'Développement Web') echo 'selected'; ?>>Développement web</option>
+                            <option value="Création Digitale" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['filiere'] == 'Création Digitale') echo 'selected'; ?>>Création digitale</option>
+                            <option value="Communication Digitale" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['filiere'] == 'Communication Digitale') echo 'selected'; ?>>Communication digitale</option>
+                            <option value="Génie Civil" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['filiere'] == 'Génie Civil') echo 'selected'; ?>>Génie Civil</option>
+                            <option value="Cybersécurité" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['filiere'] == 'Cybersécurité') echo 'selected'; ?>>Cybersécurité</option>
                         </select>
                     </div>
 
                     <div>
                         <label class="label-select">Niveau</label>
-                        <label><input type="radio" name="niveau" value="1ère année" required> 1ère année</label>
-                        <label><input type="radio" name="niveau" value="2ème année"> 2ème année</label>
-                        <label><input type="radio" name="niveau" value="3ème année"> 3ème année</label>
+                        <label><input type="radio" name="niveau" value="1ère année" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['niveau'] == '1ère année') echo 'checked'; ?>>1ère année</label>
+                        <label><input type="radio" name="niveau" value="2ème année" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['niveau'] == '2ème année') echo 'checked'; ?>>2ème année</label>
+                        <label><input type="radio" name="niveau" value="3ème année" <?php if ($mode_modification && $_SESSION['donnees'][$ligne_modification]['niveau'] == '3ème année') echo 'checked'; ?>>3ème année</label>
                     </div>
                 </div>
 
@@ -176,12 +222,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </fieldset>
 
             <div class="div-button">
-                <button type="submit" name="action">Enregistrer</button>
-                <button type="reset">Réinitialiser</button>
+                <?php if ($mode_modification): ?>
+                    <input type="hidden" name="ligne" value="<?php echo $ligne_modification; ?>">
+                    <button class="button" type="submit" name="action" value="enregistrer_modification">Enregistrer les modifications</button>
 
+                <?php else: ?>
+                    <button class="button" type="submit" name="action" value="enregistrer">Enregistrer</button>
+                <?php endif; ?>
+                <button class="button" type="reset">Réinitialiser</button>
             </div>
         </form>
     </div>
+
     <table>
         <tr id="cul">
             <td>#</td>
@@ -203,50 +255,93 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         foreach ($_SESSION['donnees'] as $key => $ligne) {
         ?>
             <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $ligne["civilite"] . ' ' . $ligne["nom_etudiant"] . ' ' . $ligne["prenom_etudiant"]; ?></td>
-                <td><?php echo $ligne["filiere"]; ?></td>
-                <td><?php echo $ligne["niveau"]; ?></td>
-                <td><?php echo $ligne["sexe"]; ?></td>
-                <td><?php echo $ligne["nom_editeur"]; ?></td>
-                <td><?php echo $ligne["prenom_editeur"]; ?></td>
-                <td><?php echo $ligne["poste"]; ?></td>
-                <td><?php echo $ligne["entreprise"]; ?></td>
-                <td><?php echo $ligne["lieu_edition"]; ?></td>
-                <td><?php echo $ligne["date_edition"]; ?></td>
+                <td>
+                    <?php echo $i; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["civilite"] . ' ' . $ligne["nom_etudiant"] . ' ' . $ligne["prenom_etudiant"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["filiere"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["niveau"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["sexe"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["nom_editeur"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["prenom_editeur"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["poste"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["entreprise"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["lieu_edition"]; ?>
+                </td>
+                <td>
+                    <?php echo $ligne["date_edition"]; ?>
+                </td>
 
                 <td>
-                   <div id="div-buttons">
-                     <form action="traitement.php" method="POST">
-                        <input style="display: none;" name="ligne" value="<?php echo $i - 1; ?>">
-                        <button type="submit" name="action" value="modifier">Modifier</button>
-                    </form>
-                    <form action="traitement.php" method="POST">
-                        <input style="display: none;" name="ligne" value="<?php echo $key; ?>">
-                        <input type="hidden" value="<?php echo $ligne["prenom_etudiant"]; ?>">
-                        <button type="submit" name="action" value="supprimer">Supprimer</button>
-                    </form>
-                   </div>
-                    <form action="fiche.php" method="POST">
-                        <input type="hidden" name="nom_etudiant" value="<?php echo $ligne['nom_etudiant']; ?>">
-                        <input type="hidden" name="prenom_etudiant" value="<?php echo $ligne['prenom_etudiant']; ?>">
-                        <input type="hidden" name="filiere" value="<?php echo $ligne['filiere']; ?>">
-                        <input type="hidden" name="niveau" value="<?php echo $ligne['niveau']; ?>">
-                        <input type="hidden" name="sexe" value="<?php echo $ligne['sexe']; ?>">
-                        <input type="hidden" name="sexe_signataire" value="<?php echo $ligne['sexe_signataire']; ?>">
-                        <input type="hidden" name="civilite" value="<?php echo $ligne['civilite']; ?>">
-                        <input type="hidden" name="nom_editeur" value="<?php echo $ligne['nom_editeur']; ?>">
-                        <input type="hidden" name="prenom_editeur" value="<?php echo $ligne['prenom_editeur']; ?>">
-                        <input type="hidden" name="poste" value="<?php echo $ligne['poste']; ?>">
-                        <input type="hidden" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
-                        <input type="hidden" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
-                        <input type="hidden" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
-                        <button type="submit">Prévisualiser</button>
-                    </form>
-                    <form action="fiche.php" method="POST">
-                        <button type="submit">Imprimer</button>
-                    </form>
+                    <div id="alpha">
+                        <div>
+                            <form action="traitement.php" method="POST">
+                                <input type="hidden" name="ligne" value="<?php echo $key; ?>">
+                                <button type="submit" name="action" value="modifier"><i class="fa-solid fa-pen-clip" style="color: #e4e4e9;"></i></button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="traitement.php" method="POST">
+                                <input style="display: none;" name="ligne" value="<?php echo $key; ?>">
+                                <input type="hidden" value="<?php echo $ligne["prenom_etudiant"]; ?>">
+                                <button class="button" type="submit" name="action" value="supprimer"><i class="fa-solid fa-trash-can" style="color: hsv(232, 90%, 87%);"></i></button>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="fiche.php" method="POST">
+                                <input type="hidden" name="nom_etudiant" value="<?php echo $ligne['nom_etudiant']; ?>">
+                                <input type="hidden" name="prenom_etudiant" value="<?php echo $ligne['prenom_etudiant']; ?>">
+                                <input type="hidden" name="filiere" value="<?php echo $ligne['filiere']; ?>">
+                                <input type="hidden" name="niveau" value="<?php echo $ligne['niveau']; ?>">
+                                <input type="hidden" name="sexe" value="<?php echo $ligne['sexe']; ?>">
+                                <input type="hidden" name="sexe_signataire" value="<?php echo $ligne['sexe_signataire']; ?>">
+                                <input type="hidden" name="civilite" value="<?php echo $ligne['civilite']; ?>">
+                                <input type="hidden" name="nom_editeur" value="<?php echo $ligne['nom_editeur']; ?>">
+                                <input type="hidden" name="prenom_editeur" value="<?php echo $ligne['prenom_editeur']; ?>">
+                                <input type="hidden" name="poste" value="<?php echo $ligne['poste']; ?>">
+                                <input type="hidden" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
+                                <input type="hidden" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
+                                <input type="hidden" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
+                                <button class="button" type="submit"><i class="fa-solid fa-eye" style="color: hsv(232, 90%, 87%);"></i></button>
+                            </form>
+                        </div>
 
+                        <div>
+                            <form action="fiche.php" method="POST">
+                                <input type="hidden" name="nom_etudiant" value="<?php echo $ligne['nom_etudiant']; ?>">
+                                <input type="hidden" name="prenom_etudiant" value="<?php echo $ligne['prenom_etudiant']; ?>">
+                                <input type="hidden" name="filiere" value="<?php echo $ligne['filiere']; ?>">
+                                <input type="hidden" name="niveau" value="<?php echo $ligne['niveau']; ?>">
+                                <input type="hidden" name="sexe" value="<?php echo $ligne['sexe']; ?>">
+                                <input type="hidden" name="sexe_signataire" value="<?php echo $ligne['sexe_signataire']; ?>">
+                                <input type="hidden" name="civilite" value="<?php echo $ligne['civilite']; ?>">
+                                <input type="hidden" name="nom_editeur" value="<?php echo $ligne['nom_editeur']; ?>">
+                                <input type="hidden" name="prenom_editeur" value="<?php echo $ligne['prenom_editeur']; ?>">
+                                <input type="hidden" name="poste" value="<?php echo $ligne['poste']; ?>">
+                                <input type="hidden" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
+                                <input type="hidden" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
+                                <input type="hidden" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
+                                <button class="button" type="submit" name="imprimer"><i class="fa-solid fa-file-pdf" style="color: hsv(232, 90%, 87%);"></i></button>
+                            </form>
+                        </div>
+                    </div>
                 </td>
 
             </tr>

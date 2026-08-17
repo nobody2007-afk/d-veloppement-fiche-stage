@@ -30,7 +30,7 @@ if ($sexe_signataire === 'Masculin') {
     $suite = 'la Directrice Générale';
 }
 
-if ($sexe=== 'Masculin') {
+if ($sexe === 'Masculin') {
     $simple = 'un de nos apprenants';
 } else {
     $simple = 'une de nos apprenantes';
@@ -129,7 +129,7 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
 
             <p>Le <strong><?php echo $poste; ?></strong> de PIGIER-BENIN est <?php echo $logique; ?> du suivi de ce stagiaire.</p>
 
-<p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong><?php echo $identification; ?> <?php echo $suite; ?> </strong>, l'expression de notre parfaite considération.</p>
+            <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong><?php echo $identification; ?> <?php echo $suite; ?> </strong>, l'expression de notre parfaite considération.</p>
             <p id="attache"><strong><?php echo $poste; ?></strong></p>
 
             <p id="signature-nom"><strong><?php echo $prenom_editeur . ' ' . $nom_editeur; ?></strong></p>
