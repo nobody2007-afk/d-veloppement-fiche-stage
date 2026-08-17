@@ -57,8 +57,11 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Présentation du Stagiaire</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/eb6368b0a2.js" crossorigin="anonymous"></script>
+    <title>Présentation du Stagiaire</title>
+
+
 </head>
 
 <body>
@@ -146,27 +149,27 @@ $affichage_date = date('d/m/Y', strtotime($date_edition));
         </div>
         <div class="footer-content">
             <div class="footer-section">
-                <p>ISTEG SARL au Capital de 1.000 000 FCFA / RCCM : RB-COTONOU B 8049</p>
+                <p><span id="span1"></span> ISTEG SARL au Capital de 1.000 000 FCFA / RCCM : RB-COTONOU B 8049</p>
             </div>
             <div class="footer-section">
-                <p><img src="map.png" alt="" width="10px" height="15px"> C/1270 Rue 320 Immeuble PIGIER-BENIN, AYIDOTE-AGONTIKON</p>
+                <p><i class="fa-solid fa-location-dot" style="color: hsv(232, 90%, 87%);"></i> C/1270 Rue 320 Immeuble PIGIER-BENIN, AYIDOTE-AGONTIKON</p>
             </div>
             <div class="footer-section">
-                <p>01 BP 2411 COTONOU RB</p>
+                <p><i class="fa-solid fa-envelope" style="color: hsv(232, 90%, 87%);"></i> 01 BP 2411 COTONOU RB</p>
             </div>
         </div>
         <div class="footer-content2">
             <div class="footer-section2">
-                <p>(229) 21 30 29 06 / 97 84 67 28 / 97 58 41 38</p>
+                <p> <i class="fa-solid fa-phone"></i>(229) 21 30 29 06 / 97 84 67 28 / 97 58 41 38</p>
             </div>
             <div class="footer-section2">
-                <p><img src="internet.png" alt="" width="25px" height="15px" id="internet">www.pigier-benin.com</p>
+                <p><i class="fa-solid fa-globe" style="color: hsv(232, 90%, 87%);"></i>  www.pigier-benin.com</p>
             </div>
             <div class="footer-section2">
-                <p>pigierbeninofficiel</p>
+                <p><i class="fa-brands fa-facebook" style="color: hsv(232, 90%, 87%);"></i> pigierbeninofficiel</p>
             </div>
             <div class="footer-section newsletter">
-                <p>pigier.cotonou@pigierbenin.com / relations.marketing@pigierbenin.com</p>
+                <p><span id="span2">@</span> pigier.cotonou@pigierbenin.com / relations.marketing@pigierbenin.com</p>
             </div>
         </div>
     </footer>

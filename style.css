@@ -240,5 +240,20 @@ footer> :not(.bande) {
 }
 
 #internet {
-  margin: 0 5px 0 0;
+  margin: 0 0 0 0;
+}
+#enveloppe{
+margin-bottom: 0;
+}
+#span1{
+background-color: #1e2942;
+padding: 1px 1px 1px 1px;
+margin-right: 5px;
+}
+
+#span2{
+background-color: #1e2942;
+color: white;
+padding: 2px 3px 3px 2px;
+border-radius: 20px;
 }

@@ -293,14 +293,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div>
                             <form action="traitement.php" method="POST">
                                 <input type="hidden" name="ligne" value="<?php echo $key; ?>">
-                                <button class="button" title="Modifier" type="submit" name="action" value="modifier"><i class="fa-solid fa-pen-clip" style="color: hsv(232, 90%, 87%);"></i></button>
+                                <button class="button" title="Modifier" type="submit" name="action" value="modifier"><i class="fa-solid fa-pen-clip"></i></button>
                             </form>
                         </div>
                         <div>
                             <form action="traitement.php" method="POST">
                                 <input type="hidden" name="ligne" value="<?php echo $key; ?>">
                                 <input type="hidden" value="<?php echo $ligne["prenom_etudiant"]; ?>">
-                                <button title="Supprimer" class="button" type="submit" name="action" value="supprimer"><i class="fa-solid fa-trash-can" style="color: hsv(232, 90%, 87%);"></i></button>
+                                <button title="Supprimer" class="button" type="submit" name="action" value="supprimer"><i class="fa-solid fa-trash-can"></i></button>
                             </form>
                         </div>
                         <div>
@@ -318,7 +318,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <input type="hidden" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
                                 <input type="hidden" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
                                 <input type="hidden" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
-                                <button title="Prévisualiser" class="button" type="submit"><i class="fa-solid fa-eye" style="color: hsv(232, 90%, 87%);"></i></button>
+                                <button title="Prévisualiser" class="button" type="submit"><i class="fa-solid fa-eye"></i></button>
                             </form>
                         </div>
 
@@ -337,7 +337,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                                 <input type="hidden" name="entreprise" value="<?php echo $ligne['entreprise']; ?>">
                                 <input type="hidden" name="lieu_edition" value="<?php echo $ligne['lieu_edition']; ?>">
                                 <input type="hidden" name="date_edition" value="<?php echo $ligne['date_edition']; ?>">
-                                <button title="Imprimer" class="button" type="submit" name="imprimer"><i class="fa-solid fa-file-pdf" style="color: hsv(232, 90%, 87%);"></i></button>
+                                <button title="Imprimer" class="button" type="submit" name="imprimer"><i class="fa-solid fa-print"></i></button>
                             </form>
                         </div>
                     </div>
