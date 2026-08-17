@@ -5,9 +5,10 @@ if (!isset($_SESSION['donnees'])) {
 }
 $mode_modification = false;
 $ligne_modification = null;
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (array_key_exists('action', $_POST) && $_POST['action'] === 'supprimer') {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
+
+    if ($_POST['action'] === 'supprimer') {
 
         if (isset($_POST['ligne'])) {
             unset($_SESSION['donnees'][$_POST['ligne']]);
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "civilite" => htmlspecialchars(trim($_POST["civilite"]))
             ];
         }
-    } else {
+    } elseif ($_POST['action'] === 'enregistrer') {
         if (isset($_POST["nom_etudiant"]) && isset($_POST["prenom_etudiant"])) {
             $nom_editeur = htmlspecialchars(trim($_POST["nom_editeur"]));
             $prenom_editeur  = htmlspecialchars(trim($_POST["prenom_editeur"]));
@@ -58,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $civilite = htmlspecialchars(trim($_POST["civilite"]));
             $id = "cpt_" . (count($_SESSION['donnees']) + 1);
             $_SESSION['donnees'][$id] = [
-
                 "nom_editeur" => $nom_editeur,
                 "prenom_editeur"  => $prenom_editeur,
                 "poste" => $poste,
