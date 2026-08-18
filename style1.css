@@ -27,7 +27,7 @@ body {
 .collapsing {
 	height: 0;
 	overflow: hidden;
-	transition: height 0.35s ease;
+	transition: height 2s ease;
 }
 
 #a {

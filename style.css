@@ -153,11 +153,11 @@ body {
 
 .form-control {
   width: 250px;
-  padding: auto;
+  padding: 12px;
   font-size: 30px;
   font-weight: bold;
   border: 1px solid #000000;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-family: 'Times New Roman', serif;
   text-align: center;
 }

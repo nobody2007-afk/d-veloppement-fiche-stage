@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
 <body>
     <p class="d-inline-flex gap-1">
         <button class="button" type="button" data-bs-toggle="collapse" data-bs-target="#form1" aria-expanded="false" aria-controls="form1">
-            Afficher / masquer le formulaire
+            <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
         </button>
     </p>
     <div id="a">
