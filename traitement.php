@@ -83,13 +83,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
 <head>
     <meta charset="UTF-8">
     <title>Résultats du formulaire</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="style1.css">
-    <script src="https://kit.fontawesome.com/eb6368b0a2.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
+    <p class="d-inline-flex gap-1">
+        <button class="button" type="button" data-bs-toggle="collapse" data-bs-target="#form1" aria-expanded="false" aria-controls="form1">
+            Afficher / masquer le formulaire
+        </button>
+    </p>
     <div id="a">
-        <form id="form1" action="traitement.php" method="POST" class="form">
+
+        <form id="form1" action="traitement.php" method="POST" class="form collapse">
             <img width="100px" src="pigier-benin.png" alt="logo">
 
             <fieldset id="fieldset-1">
@@ -349,6 +356,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
         }
         ?>
     </table>
+    <script src="https://kit.fontawesome.com/eb6368b0a2.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 </html>
