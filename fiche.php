@@ -48,6 +48,16 @@ if ($sexe_signataire === 'Masculin') {
     $logique = 'chargée';
 }
 
+$voyelles = ['a', 'e', 'i', 'o', 'u', 'y', 'h'];
+$premiere_lettre = mb_strtolower(mb_substr(trim($poste), 0, 1, 'UTF-8'), 'UTF-8');
+
+if (in_array($premiere_lettre, $voyelles)) {
+    $article_poste = "L'";
+} elseif ($sexe_signataire === 'Masculin') {
+    $article_poste = "Le ";
+} else {
+    $article_poste = "La ";
+}
 
 $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), 'd MMMM yyyy', 'fr_FR'); ?>
 <!DOCTYPE html>
@@ -131,18 +141,15 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
                     value="<?php echo $filiere . ' ' . $niveau; ?>" readonly>
             </div>
 
-            <p id="confirmation">Nous vous confirmons :
+            <p id="confirmation"> Nous vous confirmons :
             <ul>
                 <li>qu'aucune rémunération du stagiaire n'est exigée</li>
                 <li>que ce stage fait partie de sa formation et que <?php echo $bro; ?> par sa police d'assurance.</li>
             </ul>
             </p>
-
-            <p>Le <strong><?php echo $poste; ?></strong> de PIGIER-BENIN est <?php echo $logique; ?> du suivi de ce stagiaire.</p>
-
+            <p><?php echo $article_poste; ?><strong><?php echo $poste; ?></strong> de PIGIER-BENIN est <?php echo $logique; ?> du suivi de ce stagiaire.</p>
             <p>Nous vous remercions vivement de bien vouloir participer de façon active à sa formation et vous prions d'agréer, <strong><?php echo $identification; ?> <?php echo $suite; ?> </strong>, l'expression de notre parfaite considération.</p>
             <p id="attache"><strong><?php echo $poste; ?></strong></p>
-
             <p id="signature-nom"><strong><?php echo $prenom_editeur . ' ' . $nom_editeur; ?></strong></p>
         </div>
     </section>

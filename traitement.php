@@ -297,7 +297,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                             </form>
                         </div>
                         <div>
-                            <form action="traitement.php" method="POST">
+                            <form action="traitement.php" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette ligne ?');">
                                 <input type="hidden" name="ligne" value="<?php echo $key; ?>">
                                 <input type="hidden" value="<?php echo $ligne["prenom_etudiant"]; ?>">
                                 <button title="Supprimer" class="button" type="submit" name="action" value="supprimer"><i class="fa-solid fa-trash-can"></i></button>
