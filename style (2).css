@@ -1,0 +1,265 @@
+:root {
+    --ink: #16233f;
+    --ink-soft: #55617c;
+    --accent: #f2994a;
+    --accent-deep: #d9782b;
+    --surface: #f4f6fb;
+    --card: #ffffff;
+    --line: #e6e9f2;
+
+    --fil-dev: #3b82f6;
+    --fil-creation: #9061f9;
+    --fil-comm: #e64980;
+    --fil-genie: #12b886;
+    --fil-cyber: #e03131;
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+h1,
+h2,
+.brand,
+.fs-heading,
+legend {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--surface);
+    color: var(--ink);
+}
+
+.topbar {
+    background: linear-gradient(120deg, var(--ink) 0%, #223764 100%);
+    color: #fff;
+    padding: 2rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.topbar::after {
+    content: "";
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 260px;
+    height: 260px;
+    /* background: radial-gradient(circle, rgba(242, 153, 74, .35) 0%, rgba(242, 153, 74, 0) 70%); */
+    pointer-events: none;
+}
+
+/* .topbar img { filter: brightness(0) invert(1); opacity: .95; } */
+.brand-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+    color: #b9c2d6;
+    font-size: .95rem;
+}
+
+/* ---- Carte flottante qui chevauche le bandeau ----
+   position + z-index ajoutés pour que la carte passe bien AU-DESSUS
+   du bandeau (c'est ce qui masquait le bouton "Ajouter" auparavant) */
+.floating-shell {
+    margin-top: -2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.card-app {
+    background: var(--card);
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px -18px rgba(22, 35, 63, .35);
+    position: relative;
+}
+
+/* ---- Bouton d'ajout ---- */
+.btn-accent {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 18px -8px rgba(242, 153, 74, .7);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.btn-accent:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -8px rgba(217, 120, 43, .75);
+}
+
+.btn-icon-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s ease;
+}
+
+.btn-icon-action:hover {
+    transform: translateY(-2px);
+}
+
+.rotate-icon {
+    transition: transform .25s ease;
+}
+
+[aria-expanded="true"] .rotate-icon {
+    transform: rotate(180deg);
+}
+
+fieldset.field-block {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fbfcfe;
+}
+
+fieldset.field-block legend {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 0 .5rem;
+}
+
+.form-label {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1.5px solid #ddd;
+    padding: 12px 15px;
+    font-size: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 .2rem rgba(242, 153, 74, .15);
+}
+
+/* ---- Table ---- */
+.table-responsive {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.table-app thead th {
+    background: var(--ink);
+    color: #fff;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    border: none;
+    padding: .9rem .75rem;
+    position: sticky;
+    top: 0;
+}
+
+.table-app tbody td {
+    vertical-align: middle;
+    padding: .75rem;
+    border-bottom: 1px solid var(--line);
+    font-size: .9rem;
+}
+
+.table-app tbody tr {
+    transition: background .15s ease;
+    opacity: 0;
+    animation: fadeInUp .4s ease forwards;
+}
+
+.table-app tbody tr:hover {
+    background: #f8f9fd;
+}
+
+.table-app tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fil-dev {
+    background: var(--fil-dev);
+}
+
+.fil-creation {
+    background: var(--fil-creation);
+}
+
+.fil-comm {
+    background: var(--fil-comm);
+}
+
+.fil-genie {
+    background: var(--fil-genie);
+}
+
+.fil-cyber {
+    background: var(--fil-cyber);
+}
+
+.badge-fil {
+    font-weight: 600;
+    font-size: .72rem;
+    padding: .4em .65em;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.badge-niveau {
+    font-size: .72rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: .4em .65em;
+    background: #eef1f8;
+    color: var(--ink-soft);
+}
+
+.empty-state {
+    padding: 3.5rem 1rem;
+    text-align: center;
+    color: var(--ink-soft);
+}
+
+.empty-state i {
+    font-size: 2.4rem;
+    color: var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .table-app tbody tr,
+    .btn-accent,
+    .btn-icon-action {
+        animation: none !important;
+        transition: none !important;
+    }
+}

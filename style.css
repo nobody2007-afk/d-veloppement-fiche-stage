@@ -127,7 +127,7 @@ body {
 }
 
 .aside-right {
-  position: absolute;
+  /* position: fixed; */
   top: 70px;
   right: -80px;
   display: flex;
