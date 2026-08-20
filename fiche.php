@@ -62,7 +62,6 @@ if (in_array($premiere_lettre, $voyelles)) {
 $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), 'd MMMM yyyy', 'fr_FR'); ?>
 <!DOCTYPE html>
 <html lang="fr">
-''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

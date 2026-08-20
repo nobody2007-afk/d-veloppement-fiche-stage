@@ -1,3 +1,6 @@
+/* =========================================================
+   RESET
+   ========================================================= */
 * {
   box-sizing: border-box;
 }
@@ -6,195 +9,209 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
-
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Header */
-
-#logo {
-  object-fit: cover;
-  display: block;
-  border-radius: 6px;
-}
-
+/* =========================================================
+   HEADER
+   ========================================================= */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif, serif;
-  background: #1e2942;
-  color: #ffffff;
   width: 100%;
   padding: 15px 30px;
-  /* position: relative; */
-  /* top: 0;  */
-  box-sizing: border-box;
+  background: #1e2942;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#logo {
+  display: block;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 #header-right {
   display: flex;
-  text-align: left;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
 }
 
 .iso {
   display: flex;
-  /* gap: 10px; */
+  align-items: center;
+  gap: 8px;
 }
 
 .iso h1 {
-  display: block;
-  margin-left: 0;
-
+  margin: 0;
 }
 
 #iso {
-  text-align: justify;
+  margin: 0 5px 0 0;
   font-weight: bold;
-  margin: 0;
-  margin-right: 5px;
+  text-align: justify;
 }
 
 #ecole {
+  margin: 0;
   font-size: 22px;
-  margin-right: 10px;
-  margin-top: 7px;
 }
 
 #formation {
-  margin-left: 20px;
   margin: 2px 0;
   font-size: 13px;
 }
 
 #certification {
-  margin-right: 20px;
-  color: #c9a227;
   margin: 2px 0;
+  color: #c9a227;
   font-size: 13px;
 }
 
+/* Bandes décoratives sous le header */
 .bande-header {
   display: flex;
   justify-content: space-between;
 }
 
 #bande-or-header {
-  margin: 20px 0 0 0;
   flex: 1;
   height: 20px;
+  margin-top: 20px;
   background: #c9a227;
 }
 
 #bande-bleu-header {
-  margin-top: 10px;
   flex: 1;
   height: 30px;
+  margin-top: 10px;
   background: #1e2942;
-  margin: 10px 0 0 0;
-  /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-bleu-header2 {
-  margin-top: 10px;
   flex: 0 0 15px;
   height: 30px;
+  margin: 10px 10px 0;
   background: #1e2942;
-  margin: 10px 10px 0 10px;
-
 }
 
-/* Section */
+/* =========================================================
+   PAGE / CONTENU PRINCIPAL
+   ========================================================= */
 #page {
+  position: relative;
   max-width: 900px;
   margin: 20px auto;
-  padding: 0 20px;
+  /* padding gauche/droite élargie : elle réserve la place des deux
+     colonnes de logos, qui restent maintenant DANS #page au lieu
+     de déborder à l'extérieur (sinon elles sont coupées à l'impression) */
+  padding: 0 90px 0 90px;
   font-family: 'Times New Roman', serif;
-  position: relative;
-
 }
 
+/* Logo "eduservices" en vertical, dans la marge gauche.
+   À l'écran : absolute, ancré sur #page. À l'impression, ce
+   comportement change (voir @media print plus bas) car #page peut
+   s'étaler sur plusieurs feuilles. */
 .aside-left {
   position: absolute;
-  top: 320px;
-  margin-left: -155px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 70px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .aside-left img {
+  display: block;
+  width: 320px;   /* largeur avant rotation = hauteur visible une fois tourné */
+  max-width: none;
+  height: 91px;  /* hauteur avant rotation = largeur visible une fois tourné */
   transform: rotate(-90deg);
-  transform-origin: center center;
-  width: 220px;
-  height: auto;
+  transform-origin: center;
 }
 
+/* Logos partenaires empilés dans la marge droite : même logique */
 .aside-right {
-  /* position: fixed; */
-  top: 70px;
-  right: -80px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 70px;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .aside-right img {
-  width: 50px;
+  width: 48px;
   height: auto;
+  max-width: 100%;
 }
 
+/* Bloc "Entreprise" aligné à droite */
 #entreprise {
-  margin-left: 570px;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: fit-content;
+  margin-left: auto;
   margin-bottom: 20px;
 }
 
 #text {
-  margin-left: 170px;
   font-size: 18px;
 }
 
 .form-control {
   width: 250px;
   padding: 12px;
+  border: 1px solid #000000;
+  font-family: 'Times New Roman', serif;
   font-size: 30px;
   font-weight: bold;
-  border: 1px solid #000000;
-  /* box-sizing: border-box; */
-  font-family: 'Times New Roman', serif;
   text-align: center;
 }
 
 .form-control2 {
+  box-sizing: border-box;
   width: 100%;
   padding: 10px;
+  border: 1px solid #000000;
+  font-family: 'Times New Roman', serif;
   font-size: 25px;
   font-weight: bold;
-  border: 1px solid #000000;
-  box-sizing: border-box;
-  font-family: 'Times New Roman', serif;
 }
 
-
+/* Bandeau "PRESENTATION DU STAGIAIRE" */
 #presentation {
+  box-sizing: border-box;
+  width: 100%;
   margin-top: 20px;
+  padding: 8px 0;
+  border: 1.5px solid #000000;
   background: gray;
   text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid #000000;
-  /* padding-bottom: 15px; */
-  padding: 8px 0;
-
 }
 
 #paragraph {
-  font-weight: bold;
   margin: 0;
   font-size: 20px;
+  font-weight: bold;
 }
 
+/* Libellés des champs (nom, filière...) */
 .information {
   display: block;
-  font-size: 18px;
   margin-bottom: 5px;
+  font-size: 18px;
 }
 
 #filiere-label {
@@ -202,7 +219,7 @@ body {
 }
 
 #confirmation {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-size: 20px;
 }
 
@@ -210,37 +227,33 @@ li {
   margin-top: 0;
 }
 
-#signature-nom {
-  margin-top: 40px;
-  text-decoration: underline;
-
-}
-
 #attache {
   margin-top: 20px;
 }
 
-/* Footer */
+#signature-nom {
+  margin-top: 40px;
+  text-decoration: underline;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 .bande-footer {
   display: flex;
-  /* justify-content: space-between; */
 }
 
 #bande-bleu-footer {
   flex: 1;
   height: 30px;
   background: #1e2942;
-  margin: 0 0 0 0;
-  /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-bleu-footer2 {
   flex: 0 0 15px;
-  width: 5;
   height: 30px;
+  margin: 0 10px;
   background: #1e2942;
-  margin: 0 10px 0 10px;
-  /* margin-top;margin-left;margin-bottom;margin-right */
 }
 
 #bande-or-footer {
@@ -249,60 +262,159 @@ li {
   background: #c9a227;
 }
 
-footer> :not(.bande-footer) {
-  background: #f1f3f9;
+footer > :not(.bande-footer) {
   padding-left: 10px;
   padding-right: 10px;
-  font-family: Arial, Helvetica, sans-serif, serif;
-  /* margin-top: 40px; */
-  /* position: fixed; */
-  /* bottom: 0; */
+  background: #f1f3f9;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #ecole-footer {
+  margin: 0;
   color: #1e2942;
-  text-align: right;
   font-size: 13px;
-  font-family: Arial, Helvetica, sans-serif, serif;
   font-weight: bold;
-  margin: 0 0 0 0;
+  text-align: right;
 }
 
-.footer-content {
-  color: #1e2942;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  font-size: 11px;
-  margin: 0 0 0 0;
-}
-
+.footer-content,
 .footer-content2 {
-  color: #1e2942;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
+  margin: 0;
+  color: #1e2942;
   font-size: 11px;
-  margin: 0 0 0 0;
 }
 
-#internet {
-  margin: 0 0 0 0;
-}
-
+#internet,
 #enveloppe {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 #span1 {
-  background-color: #1e2942;
-  padding: 1px 1px 1px 1px;
   margin-right: 5px;
+  padding: 1px;
+  background-color: #1e2942;
 }
 
 #span2 {
-  background-color: #1e2942;
-  color: white;
   padding: 2px 3px 3px 2px;
   border-radius: 20px;
+  background-color: #1e2942;
+  color: white;
+}
+
+/* =========================================================
+   IMPRESSION — tout tenir sur UNE seule page A4 portrait
+   ========================================================= */
+@page {
+  size: A4 portrait;
+  margin: 8mm 8mm;
+}
+
+@media print {
+  /* On force le document (header + #page + footer) à occuper toute
+     la hauteur d'une page imprimée : header et footer gardent leur
+     hauteur naturelle, et #page s'étire (flex: 1) pour absorber
+     tout l'espace restant → plus de vide sous le footer, plus de
+     débordement sur une 2e page.
+     "100vh" correspond à la hauteur d'UNE page imprimée dans Chrome. */
+  html, body {
+    height: 100vh !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .header-content,
+  .bande-header {
+    flex: 0 0 auto;
+  }
+
+  #page {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 70px;
+  }
+
+  footer {
+    flex: 0 0 auto;
+  }
+
+  .header-content,
+  footer > :not(.bande-footer) {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* On garde les colonnes de logos en "absolute" (ancrées sur
+     #page) même à l'impression : #page tient maintenant sur une
+     seule page grâce au zoom ci-dessous, donc plus besoin de
+     "fixed". "fixed" posait justement problème : il étirait les
+     logos sur TOUTE la hauteur de la feuille physique, y compris
+     par-dessus le header, et les faisait réapparaître seuls si un
+     saut de page survenait quand même. */
+
+  /* On force le navigateur à ne jamais insérer de saut de page
+     à l'intérieur de ces blocs */
+  .header-content,
+  .bande-header,
+  footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* zoom réduit toute la mise en page (texte, espacements, images)
+     proportionnellement, pour que l'ensemble tienne sur une seule
+     feuille. Fonctionne sur Chrome / Edge / Safari.
+     -> Si tu imprimes depuis Firefox (qui ignore "zoom"), utilise
+        l'option "Échelle" du dialogue d'impression et mets-la
+        autour de 75-85%. */
+  html, body {
+    zoom: 0.85;
+  }
+
+  /* Marges/tailles resserrées en plus du zoom, pour gagner encore
+     un peu de place sur les documents un peu longs */
+  .header-content {
+    padding: 10px 20px;
+  }
+
+  #ecole {
+    font-size: 18px;
+  }
+
+  #bande-or-header,
+  #bande-bleu-header,
+  #bande-bleu-header2 {
+    height: 16px;
+    margin-top: 8px;
+  }
+
+  #presentation {
+    margin-top: 12px;
+    padding: 5px 0;
+  }
+
+  #entreprise {
+    margin-bottom: 10px;
+  }
+
+  #attache {
+    margin-top: 10px;
+  }
+
+  #signature-nom {
+    margin-top: 20px;
+  }
 }
