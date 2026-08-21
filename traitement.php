@@ -75,19 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
             ];
         }
     }
-}
 
-// Mappe chaque filière à une couleur d'accent dédiée (utilisé pour badges + avatars)
-function classe_filiere($filiere)
-{
-    $map = [
-        "Développement Web" => "fil-dev",
-        "Création Digitale" => "fil-creation",
-        "Communication Digitale" => "fil-comm",
-        "Génie Civil" => "fil-genie",
-        "Cybersécurité" => "fil-cyber",
-    ];
-    return $map[$filiere] ?? "fil-dev";
 }
 ?>
 <!DOCTYPE html>
@@ -290,7 +278,6 @@ function classe_filiere($filiere)
                         <?php
                         $i = 1;
                         foreach ($_SESSION['donnees'] as $key => $ligne) {
-                            $classe_fil = classe_filiere($ligne["filiere"]);
                         ?>
                             <tr style="animation-delay: <?php echo ($i * 0.05); ?>s;">
                                 <td class="text-muted"><?php echo $i; ?></td>
@@ -298,7 +285,7 @@ function classe_filiere($filiere)
                                     <div class="fw-semibold" style="font-size:.88rem;"><?php echo $ligne["civilite"] . ' ' . $ligne["nom_etudiant"] . ' ' . $ligne["prenom_etudiant"]; ?></div>
                                     <div class="text-muted" style="font-size:.76rem;"><?php echo $ligne["sexe"]; ?></div>
                                 </td>
-                                <td><span class="badge-fil <?php echo $classe_fil; ?>"><?php echo $ligne["filiere"]; ?></span></td>
+                                <td><span class="badge-fil"><?php echo $ligne["filiere"]; ?></span></td>
                                 <td><span class="badge-niveau"><?php echo $ligne["niveau"]; ?></span></td>
                                 <td>
                                     <div style="font-size:.85rem;"><?php echo $ligne["civilite"] . ' ' . $ligne["nom_editeur"] . ' ' . $ligne["prenom_editeur"]; ?></div>
