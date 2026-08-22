@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -29,41 +28,45 @@ body {
 
 #header-right {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+  text-align: left;
 }
 
 .iso {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .iso h1 {
-  margin: 0;
+  display: block;
+  margin-left: 0;
+
 }
 
 #iso {
-  margin: 0 5px 0 0;
+  margin: 0 10px 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
   font-weight: bold;
-  text-align: justify;
 }
 
 #ecole {
-  margin: 0;
+  margin-right: 0;
+  margin-top: 7px;
   font-size: 22px;
 }
 
 #formation {
-  margin: 2px 0;
-  font-size: 13px;
+  margin-left: 20px;
+  margin-top: 2px;
+  margin-bottom: 0;
+  font-size: 15px;
 }
 
 #certification {
-  margin: 2px 0;
+  margin: 0 20px 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
   color: #c9a227;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .bande-header {
@@ -74,7 +77,8 @@ body {
 #bande-or-header {
   flex: 1;
   height: 20px;
-  margin-top: 20px;
+  margin: 20px 0 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
   background: #c9a227;
 }
 
@@ -82,6 +86,8 @@ body {
   flex: 1;
   height: 30px;
   margin-top: 10px;
+  margin: 10px 0 0 0;
+  /* margin-top;margin-left;margin-bottom;margin-right */
   background: #1e2942;
 }
 
@@ -92,6 +98,7 @@ body {
   background: #1e2942;
 }
 
+/* Section */
 #page {
   position: relative;
   max-width: 900px;
@@ -114,9 +121,9 @@ body {
 
 .aside-left img {
   display: block;
-  width: 320px;   
+  width: 320px;
   max-width: none;
-  height: 91px;  
+  height: 91px;
   transform: rotate(-90deg);
   transform-origin: center;
 }
@@ -213,10 +220,11 @@ li {
 }
 
 #signature-nom {
-  margin-top: 40px;
+  margin-top: 60px;
   text-decoration: underline;
 }
 
+/* Footer */
 .bande-footer {
   display: flex;
 }
@@ -240,7 +248,7 @@ li {
   background: #c9a227;
 }
 
-footer > :not(.bande-footer) {
+footer> :not(.bande-footer) {
   padding-left: 10px;
   padding-right: 10px;
   background: #f1f3f9;
@@ -289,7 +297,9 @@ footer > :not(.bande-footer) {
 }
 
 @media print {
-  html, body {
+
+  html,
+  body {
     height: 100vh !important;
     min-height: 0 !important;
     margin: 0 !important;
@@ -301,10 +311,10 @@ footer > :not(.bande-footer) {
     flex-direction: column !important;
   }
 
-  .header-content,
+  /* .header-content,
   .bande-header {
     flex: 0 0 auto;
-  }
+  } */
 
   #page {
     flex: 1 1 auto;
@@ -320,37 +330,38 @@ footer > :not(.bande-footer) {
     flex: 0 0 auto;
   }
 
-  .header-content,
-  footer > :not(.bande-footer) {
+  /* .header-content,
+  footer> :not(.bande-footer) {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
+  } */
 
-  .header-content,
+  /* .header-content,
   .bande-header,
   footer {
     break-inside: avoid;
     page-break-inside: avoid;
-  }
+  } */
 
-  html, body {
+  html,
+  body {
     zoom: 0.85;
   }
 
-  .header-content {
+  /* .header-content {
     padding: 10px 20px;
-  }
+  }  */
 
-  #ecole {
+  /* #ecole {
     font-size: 18px;
-  }
+  } */
 
-  #bande-or-header,
+  /* #bande-or-header,
   #bande-bleu-header,
   #bande-bleu-header2 {
     height: 16px;
     margin-top: 8px;
-  }
+  } */
 
   #presentation {
     margin-top: 12px;

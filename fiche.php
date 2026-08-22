@@ -82,7 +82,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
                     <div class="header-right">
                         <div class="iso">
                             <h1 id="ecole">Ecole Certifiée ISO</h1>
-                            <p id="iso">9001/2015 <br>21001/2018</p>
+                            <p id="iso">9001/2015 <br><span id="ph">21001/2018</span></p>
                         </div>
                         <div class="iso1">
                             <p id="formation">Formation & Placement des Apprenants</p>
