@@ -111,13 +111,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                     <h2 class="fs-heading mb-0" style="font-size:1.15rem;">Nouvel enregistrement</h2>
                     <div class="text-muted" style="font-size:.85rem;">Renseigner les informations pour générer une fiche</div>
                 </div>
-                <button class="btn btn-accent d-flex align-items-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#form1" aria-expanded="false" aria-controls="form1">
+                <button class="btn btn-accent d-flex align-items-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#form1" aria-expanded="<?php echo $mode_modification ? 'true' : 'false'; ?>" aria-controls="form1">
                     <i class="fa-solid fa-plus"></i> Ajouter
                     <i class="fa-solid fa-chevron-down rotate-icon"></i>
                 </button>
             </div>
 
-            <div class="collapse mt-4" id="form1">
+            <div class="collapse mt-4<?php echo $mode_modification ? ' show' : ''; ?>" id="form1">
                 <form action="traitement.php" method="POST">
 
                     <fieldset class="field-block p-3 mb-4">
@@ -339,6 +339,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
+    <?php if ($mode_modification): ?>
+    <script>
+        document.getElementById('form1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    </script>
+    <?php endif; ?>
 
 </body>
 
