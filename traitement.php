@@ -288,7 +288,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                                 <td><span class="badge-fil"><?php echo $ligne["filiere"]; ?></span></td>
                                 <td><span class="badge-niveau"><?php echo $ligne["niveau"]; ?></span></td>
                                 <td>
-                                    <div style="font-size:.85rem;"><?php echo $ligne["civilite"] . ' ' . $ligne["nom_editeur"] . ' ' . $ligne["prenom_editeur"]; ?></div>
+                                    <div style="font-size:.85rem;"><?php echo $ligne["nom_editeur"] . ' ' . $ligne["prenom_editeur"]; ?></div>
                                     <div class="text-muted" style="font-size:.76rem;"><?php echo $ligne["poste"]; ?></div>
                                 </td>
                                 <td style="font-size:.85rem;"><?php echo $ligne["entreprise"]; ?></td>
