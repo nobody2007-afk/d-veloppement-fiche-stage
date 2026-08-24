@@ -82,7 +82,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
                     <div class="header-right">
                         <div class="iso">
                             <h1 id="ecole">Ecole Certifiée ISO</h1>
-                            <p id="iso">9001/2015 <br><span id="ph">21001/2018</span></p>
+                            <p id="iso">9001/2015 <br>21001/2018</p>
                         </div>
                         <div class="iso1">
                             <p id="formation">Formation & Placement des Apprenants</p>
@@ -115,7 +115,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
 
             <div id="entreprise">
                 <label id="text">Entreprise</label>
-                <input class="form-control" type="text" name="entreprise" value="<?php echo $entreprise; ?>" readonly>
+                <div class="form-control"><?php echo $entreprise; ?></div>
             </div>
 
             <div id="presentation">
@@ -129,15 +129,12 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             <div id="presentation-details">
                 <div class="form-group2">
                     <label class="information">Nous avons le plaisir de vous présenter :</label>
-                    <input class="form-control2" type="text" name="nom_etudiant"
-                        value="<?php echo $civilite . ' ' . $nom_etudiant . ' ' . $prenom_etudiant; ?>"
-                        readonly>
+                    <div class="form-control2"><?php echo $civilite . ' ' . $nom_etudiant . ' ' . $prenom_etudiant; ?></div>
                 </div>
 
                 <div class="form-group2">
                     <label class="information" id="filiere-label">De la filière</label>
-                    <input class="form-control2" type="text" name="filiere"
-                        value="<?php echo $filiere . ' ' . $niveau; ?>" readonly>
+                    <div class="form-control2"><?php echo $filiere . ' ' . $niveau; ?></div>
                 </div>
 
                 <p id="confirmation"> Nous vous confirmons :
@@ -211,6 +208,8 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
 
                 pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                 pdf.save('fiche_stagiaire.pdf');
+
+            
             };
         </script>
     <?php endif; ?>

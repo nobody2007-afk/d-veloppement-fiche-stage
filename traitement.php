@@ -315,7 +315,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                                             <button title="Prévisualiser" class="btn btn-icon-action btn-outline-info" data-bs-toggle="tooltip" type="submit"><i class="fa-solid fa-eye"></i></button>
                                         </form>
 
-                                        <form action="fiche.php" method="POST">
+                                        <form action="fiche.php" method="POST" onsubmit="return imprimerFiche(this, event);">
                                             <?php foreach ($ligne as $champ => $valeur): ?>
                                                 <input type="hidden" name="<?php echo $champ; ?>" value="<?php echo $valeur; ?>">
                                             <?php endforeach; ?>
@@ -339,6 +339,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
+    <script>
+        function imprimerFiche(form, e) {
+            e.preventDefault();
+
+            var donnees = new FormData(form);
+            donnees.append('imprimer', '1');
+
+            fetch(form.action, {
+                method: 'POST',
+                body: donnees
+            })
+            .then(function (reponse) {
+                return reponse.text();
+            })
+            .then(function (html) {
+                var iframe = document.getElementById('iframeImpression');
+                if (iframe) {
+                    iframe.remove();
+                }
+                iframe = document.createElement('iframe');
+                iframe.id = 'iframeImpression';
+                iframe.style.position = 'fixed';
+                iframe.style.top = '-10000px';
+                iframe.style.left = '-10000px';
+                iframe.style.width = '900px';
+                iframe.style.height = '1300px';
+                iframe.style.border = '0';
+                document.body.appendChild(iframe);
+
+                // Chemin du dossier courant, pour que les liens relatifs
+                // (images, style.css...) fonctionnent une fois injectés
+                // dans l'iframe.
+                var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+                html = html.replace('<head>', '<head><base href="' + dossier + '">');
+
+                var doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(html);
+                doc.close();
+                // fiche.php contient déjà le script html2canvas/jsPDF qui se
+                // déclenche automatiquement (window.onload) et lance le
+                // téléchargement du PDF, sans jamais afficher la fiche.
+            })
+            .catch(function (erreur) {
+                console.error('Erreur téléchargement PDF :', erreur);
+            });
+
+            return false;
+        }
+    </script>
 
     <?php if ($mode_modification): ?>
     <script>
