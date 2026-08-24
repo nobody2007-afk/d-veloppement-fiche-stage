@@ -1,4 +1,33 @@
-.div1 {
-    border-radius-top-left: 20px;
-    border-radius-top-right: 20px;
+header {
+    background: #1d2941;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    margin-bottom: 20px;
+}
+
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: rgba(241, 240, 240, 0.85);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background 0.2s, color 0.2s;
+}
+
+a:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #64b5f6;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
 }

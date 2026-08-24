@@ -74,8 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                 "civilite" => $civilite,
             ];
         }
+        header("Location:./traitement.php");
+        exit;
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -91,18 +92,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
 
 <body class="bg-light">
 
-    <nav class="navbar navbar-dark mb-4" style="background-color: #1d2941;">
-        <div class="container">
-            <span class="navbar-brand d-flex align-items-center gap-2">
-                <img src="pigier-benin.png" alt="logo" width="100">
-                Attestations de stage — Pigier Bénin
-            </span>
+    <header>
+        <div class="logo">
+            Formulaire d'enregistrement
         </div>
-    </nav>
-
+        <nav>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="container pb-5">
 
-        <div class="card mb-4 shadow-sm div1">
+        <div class="card mb-4 shadow-sm">
             <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #1d2941;">
                 <h2 class="h5 mb-0">Enregistrement</h2>
                 <button class="btn btn-light btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#form1" aria-expanded="<?php echo $mode_modification ? 'true' : 'false'; ?>" aria-controls="form1">
@@ -251,8 +253,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
             </div>
         </div>
 
-        <div class="card shadow-sm">
-            <div class="card-header text-white" style="background-color: #1d2941;">
+        <div class="card shadow-sm div2">
+            <div class="card-header text-white div3" style="background-color: #1d2941;">
                 <h2 class="h5 mb-0">Fiches enregistrées</h2>
             </div>
             <div class="card-body">
@@ -344,53 +346,56 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
             donnees.append('imprimer', '1');
 
             fetch(form.action, {
-                method: 'POST',
-                body: donnees
-            })
-            .then(function (reponse) {
-                return reponse.text();
-            })
-            .then(function (html) {
-                var iframe = document.getElementById('iframeImpression');
-                if (iframe) {
-                    iframe.remove();
-                }
-                iframe = document.createElement('iframe');
-                iframe.id = 'iframeImpression';
-                iframe.style.position = 'fixed';
-                iframe.style.top = '-10000px';
-                iframe.style.left = '-10000px';
-                iframe.style.width = '900px';
-                iframe.style.height = '1300px';
-                iframe.style.border = '0';
-                document.body.appendChild(iframe);
+                    method: 'POST',
+                    body: donnees
+                })
+                .then(function(reponse) {
+                    return reponse.text();
+                })
+                .then(function(html) {
+                    var iframe = document.getElementById('iframeImpression');
+                    if (iframe) {
+                        iframe.remove();
+                    }
+                    iframe = document.createElement('iframe');
+                    iframe.id = 'iframeImpression';
+                    iframe.style.position = 'fixed';
+                    iframe.style.top = '-10000px';
+                    iframe.style.left = '-10000px';
+                    iframe.style.width = '900px';
+                    iframe.style.height = '1300px';
+                    iframe.style.border = '0';
+                    document.body.appendChild(iframe);
 
-                // Chemin du dossier courant, pour que les liens relatifs
-                // (images, style.css...) fonctionnent une fois injectés
-                // dans l'iframe.
-                var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-                html = html.replace('<head>', '<head><base href="' + dossier + '">');
+                    // Chemin du dossier courant, pour que les liens relatifs
+                    // (images, style.css...) fonctionnent une fois injectés
+                    // dans l'iframe.
+                    var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+                    html = html.replace('<head>', '<head><base href="' + dossier + '">');
 
-                var doc = iframe.contentWindow.document;
-                doc.open();
-                doc.write(html);
-                doc.close();
-                // fiche.php contient déjà le script html2canvas/jsPDF qui se
-                // déclenche automatiquement (window.onload) et lance le
-                // téléchargement du PDF, sans jamais afficher la fiche.
-            })
-            .catch(function (erreur) {
-                console.error('Erreur téléchargement PDF :', erreur);
-            });
+                    var doc = iframe.contentWindow.document;
+                    doc.open();
+                    doc.write(html);
+                    doc.close();
+                    // fiche.php contient déjà le script html2canvas/jsPDF qui se
+                    // déclenche automatiquement (window.onload) et lance le
+                    // téléchargement du PDF, sans jamais afficher la fiche.
+                })
+                .catch(function(erreur) {
+                    console.error('Erreur téléchargement PDF :', erreur);
+                });
 
             return false;
         }
     </script>
 
     <?php if ($mode_modification): ?>
-    <script>
-        document.getElementById('form1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    </script>
+        <script>
+            document.getElementById('form1').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        </script>
     <?php endif; ?>
 
 </body>
