@@ -68,10 +68,36 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/eb6368b0a2.js" crossorigin="anonymous"></script>
     <title>Présentation du Stagiaire</title>
-   
+
 </head>
 
 <body>
+    <div class="barre-actions">
+        <button id="btn-telecharger" type="button" onclick="telechargerPDF()">
+            <i class="fa-solid fa-file-arrow-down"></i> Télécharger en PDF
+        </button>
+    </div>
+
+    <!-- Formulaire caché contenant les données d'origine, utilisé pour reposter
+         exactement les mêmes valeurs vers cette page (comme le fait
+         traitement.php) afin que le bouton "Télécharger" produise un rendu
+         strictement identique au bouton "Imprimer". -->
+    <form id="form-source-donnees" style="display:none">
+        <input type="hidden" name="nom_editeur" value="<?php echo htmlspecialchars($nom_editeur, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="prenom_editeur" value="<?php echo htmlspecialchars($prenom_editeur, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="poste" value="<?php echo htmlspecialchars($poste, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="entreprise" value="<?php echo htmlspecialchars($entreprise, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="lieu_edition" value="<?php echo htmlspecialchars($lieu_edition, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="date_edition" value="<?php echo htmlspecialchars($date_edition, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="nom_etudiant" value="<?php echo htmlspecialchars($nom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="prenom_etudiant" value="<?php echo htmlspecialchars($prenom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="filiere" value="<?php echo htmlspecialchars($filiere, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="niveau" value="<?php echo htmlspecialchars($niveau, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="sexe" value="<?php echo htmlspecialchars($sexe, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="sexe_signataire" value="<?php echo htmlspecialchars($sexe_signataire, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" name="civilite" value="<?php echo htmlspecialchars($civilite, ENT_QUOTES, 'UTF-8'); ?>">
+    </form>
+
     <div id="fiche-imprimer">
         <header>
             <div class="header-content">
@@ -186,35 +212,115 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             </div>
         </footer>
     </div>
-    <?php if (isset($_POST['imprimer'])): ?>
-        <script>
-            window.onload = async function() {
-                const {
-                    jsPDF
-                } = window.jspdf;
-                const element = document.getElementById('fiche-imprimer');
-
-                const canvas = await html2canvas(element, {
-                    scale: 3,
-                    useCORS: true,
-                    logging: false,
-                    backgroundColor: '#ffffff'
-                });
-
-                const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                const pdfWidth = pdf.internal.pageSize.getWidth();
-                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('fiche_stagiaire.pdf');
-
-            
-            };
-        </script>
-    <?php endif; ?>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Capture un élément donné et déclenche le téléchargement du PDF.
+        async function capturerEtTelecharger(element) {
+            const { jsPDF } = window.jspdf;
+
+            const canvas = await html2canvas(element, {
+                scale: 3,
+                useCORS: true,
+                logging: false,
+                backgroundColor: '#ffffff'
+            });
+
+            const imgData = canvas.toDataURL('image/jpeg', 1.0);
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('fiche_stagiaire.pdf');
+        }
+
+        // Utilisé automatiquement quand la page est chargée dans l'iframe
+        // cachée (soit depuis traitement.php, soit depuis le bouton
+        // "Télécharger" de cette page). Une fois le PDF généré, on prévient
+        // la fenêtre parente si on est dans une iframe.
+        async function genererDepuisCettePage() {
+            const element = document.getElementById('fiche-imprimer');
+            await capturerEtTelecharger(element);
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage('pdf-genere', '*');
+            }
+        }
+
+        // Utilisé par le bouton visible sur la page : on reposte les mêmes
+        // données du formulaire d'origine vers cette page (avec
+        // imprimer=1) dans une iframe cachée de taille fixe (900x1300).
+        // La page rechargée dans l'iframe est donc EXACTEMENT la même page
+        // PHP, avec les mêmes scripts (Font Awesome inclus) et les mêmes
+        // images chargées normalement, ce qui garantit un rendu identique
+        // à celui du flux "Imprimer" de traitement.php.
+        async function telechargerPDF() {
+            const bouton = document.getElementById('btn-telecharger');
+            if (bouton) {
+                bouton.disabled = true;
+                bouton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Génération...';
+            }
+
+            const nomIframe = 'iframe-pdf-' + Date.now();
+            const iframe = document.createElement('iframe');
+            iframe.name = nomIframe;
+            iframe.style.position = 'fixed';
+            iframe.style.top = '-10000px';
+            iframe.style.left = '-10000px';
+            iframe.style.width = '900px';
+            iframe.style.height = '1300px';
+            iframe.style.border = '0';
+            document.body.appendChild(iframe);
+
+            const formSource = document.getElementById('form-source-donnees');
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = window.location.pathname;
+            form.target = nomIframe;
+            form.style.display = 'none';
+
+            new FormData(formSource).forEach(function (valeur, cle) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = cle;
+                input.value = valeur;
+                form.appendChild(input);
+            });
+
+            const inputImprimer = document.createElement('input');
+            inputImprimer.type = 'hidden';
+            inputImprimer.name = 'imprimer';
+            inputImprimer.value = '1';
+            form.appendChild(inputImprimer);
+
+            document.body.appendChild(form);
+
+            try {
+                await new Promise(function (resolve) {
+                    function ecouteur(evenement) {
+                        if (evenement.data === 'pdf-genere') {
+                            window.removeEventListener('message', ecouteur);
+                            resolve();
+                        }
+                    }
+                    window.addEventListener('message', ecouteur);
+                    setTimeout(resolve, 8000); // filet de sécurité si le message n'arrive pas
+                    form.submit();
+                });
+            } finally {
+                form.remove();
+                setTimeout(function () { iframe.remove(); }, 500);
+                if (bouton) {
+                    bouton.disabled = false;
+                    bouton.innerHTML = '<i class="fa-solid fa-file-arrow-down"></i> Télécharger en PDF';
+                }
+            }
+        }
+
+        <?php if (isset($_POST['imprimer'])): ?>
+        window.onload = genererDepuisCettePage;
+        <?php endif; ?>
+    </script>
     <!-- <script src="script.js"></script> -->
 </body>
 
