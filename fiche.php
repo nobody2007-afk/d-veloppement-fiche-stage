@@ -78,10 +78,6 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
         </button>
     </div>
 
-    <!-- Formulaire caché contenant les données d'origine, utilisé pour reposter
-         exactement les mêmes valeurs vers cette page (comme le fait
-         traitement.php) afin que le bouton "Télécharger" produise un rendu
-         strictement identique au bouton "Imprimer". -->
     <form id="form-source-donnees" style="display:none">
         <input type="hidden" name="nom_editeur" value="<?php echo htmlspecialchars($nom_editeur, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="prenom_editeur" value="<?php echo htmlspecialchars($prenom_editeur, ENT_QUOTES, 'UTF-8'); ?>">
@@ -237,10 +233,6 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             pdf.save('fiche_stagiaire_' + nom_etudiant + '_' + prenom_etudiant + '.pdf');
         }
 
-        // Utilisé automatiquement quand la page est chargée dans l'iframe
-        // cachée (soit depuis traitement.php, soit depuis le bouton
-        // "Télécharger" de cette page). Une fois le PDF généré, on prévient
-        // la fenêtre parente si on est dans une iframe.
         async function genererDepuisCettePage() {
             const element = document.getElementById('fiche-imprimer');
             await capturerEtTelecharger(element);
@@ -249,13 +241,6 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             }
         }
 
-        // Utilisé par le bouton visible sur la page : on reposte les mêmes
-        // données du formulaire d'origine vers cette page (avec
-        // imprimer=1) dans une iframe cachée de taille fixe (900x1300).
-        // La page rechargée dans l'iframe est donc EXACTEMENT la même page
-        // PHP, avec les mêmes scripts (Font Awesome inclus) et les mêmes
-        // images chargées normalement, ce qui garantit un rendu identique
-        // à celui du flux "Imprimer" de traitement.php.
         async function telechargerPDF() {
             const bouton = document.getElementById('btn-telecharger');
             if (bouton) {
@@ -306,7 +291,7 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
                         }
                     }
                     window.addEventListener('message', ecouteur);
-                    setTimeout(resolve, 8000); // filet de sécurité si le message n'arrive pas
+                    setTimeout(resolve, 8000); 
                     form.submit();
                 });
             } finally {
