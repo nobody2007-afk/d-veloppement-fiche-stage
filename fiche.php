@@ -89,8 +89,8 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
         <input type="hidden" name="entreprise" value="<?php echo htmlspecialchars($entreprise, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="lieu_edition" value="<?php echo htmlspecialchars($lieu_edition, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="date_edition" value="<?php echo htmlspecialchars($date_edition, ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" name="nom_etudiant" value="<?php echo htmlspecialchars($nom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
-        <input type="hidden" name="prenom_etudiant" value="<?php echo htmlspecialchars($prenom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" id="nom_etudiant" name="nom_etudiant" value="<?php echo htmlspecialchars($nom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
+        <input type="hidden" id="prenom_etudiant" name="prenom_etudiant" value="<?php echo htmlspecialchars($prenom_etudiant, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="filiere" value="<?php echo htmlspecialchars($filiere, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="niveau" value="<?php echo htmlspecialchars($niveau, ENT_QUOTES, 'UTF-8'); ?>">
         <input type="hidden" name="sexe" value="<?php echo htmlspecialchars($sexe, ENT_QUOTES, 'UTF-8'); ?>">
@@ -231,8 +231,10 @@ $affichage_date = IntlDateFormatter::formatObject(new DateTime($date_edition), '
             const pdfWidth = pdf.internal.pageSize.getWidth();
             const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
+            var nom_etudiant = document.getElementById('nom_etudiant').value.toLowerCase();
+            var prenom_etudiant = document.getElementById('prenom_etudiant').value.toLowerCase();
             pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save('fiche_stagiaire.pdf');
+            pdf.save('fiche_stagiaire_' + nom_etudiant + '_' + prenom_etudiant + '.pdf');
         }
 
         // Utilisé automatiquement quand la page est chargée dans l'iframe
