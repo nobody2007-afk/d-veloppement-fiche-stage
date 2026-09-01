@@ -365,9 +365,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                 iframe.style.border = '0';
                 document.body.appendChild(iframe);
 
-                // Chemin du dossier courant, pour que les liens relatifs
-                // (images, style.css...) fonctionnent une fois injectés
-                // dans l'iframe.
                 var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
                 html = html.replace('<head>', '<head><base href="' + dossier + '">');
 
@@ -375,9 +372,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                 doc.open();
                 doc.write(html);
                 doc.close();
-                // fiche.php contient déjà le script html2canvas/jsPDF qui se
-                // déclenche automatiquement (window.onload) et lance le
-                // téléchargement du PDF, sans jamais afficher la fiche.
             })
             .catch(function (erreur) {
                 console.error('Erreur téléchargement PDF :', erreur);
