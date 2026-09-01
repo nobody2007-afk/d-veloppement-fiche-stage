@@ -367,17 +367,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action'])) {
                     iframe.style.border = '0';
                     document.body.appendChild(iframe);
 
-                var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-                html = html.replace('<head>', '<head><base href="' + dossier + '">');
 
-                var doc = iframe.contentWindow.document;
-                doc.open();
-                doc.write(html);
-                doc.close();
-            })
-            .catch(function (erreur) {
-                console.error('Erreur téléchargement PDF :', erreur);
-            });
+                    var dossier = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
+                    html = html.replace('<head>', '<head><base href="' + dossier + '">');
+
+                    var doc = iframe.contentWindow.document;
+                    doc.open();
+                    doc.write(html);
+                    doc.close();
+
+                })
+                .catch(function(erreur) {
+                    console.error('Erreur téléchargement PDF :', erreur);
+                });
 
             return false;
         }
